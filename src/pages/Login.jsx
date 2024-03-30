@@ -1,6 +1,44 @@
 import React from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import authActions from '../redux/actions/auth.actions';
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Login = () => {
+    const [userData, setUserData] = useState({ email: "", password: "" });
+    const dispatch = useDispatch();
+    const { login, current } = authActions;
+    const navigate = useNavigate();
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        axios.post("https://localhost:8080/api/User/login", userData)
+            .then(res => {
+                localStorage.setItem("token", res.data)
+                dispatch(login(res.data))
+                axios.get("https://localhost:8080/api/User/current", {
+                    headers: {
+                        Authorization: `Bearer ${res.data}`
+                    }
+                }).then(res => {
+                    dispatch(current(res.data))
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            })
+            .catch(err => {
+                alert(err.response.data)
+                console.log(err)
+            })
+    }
+
+    const handleChange = (e) => {
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+        console.log(userData)
+    }
+
     return (
         <>
             <div className="min-h-screen flex justify-center  py-12 px-4 sm:px-6 lg:px-8 items-center bg-gradient-to-br from-[#A62190] via-[#6583BF] to-[#48B0D9]">
@@ -11,16 +49,16 @@ const Login = () => {
                         </h2>
                         <p className="mt-2 text-sm text-gray-600">Inicie sesión en su cuenta</p>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
-                        <input type="hidden" name="remember" value="true"></input>
+                    <form onSubmit={handleLogin} className="mt-8 space-y-6">
+                        
                         <div className="relative">
                             
                             <label className="text-sm font-bold text-gray-700 tracking-wide">Correo</label>
-                            <input className=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="mail@gmail.com"></input>
+                            <input className=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" value={userData.email} name="email" onChange={handleChange} type="email" placeholder="mail@gmail.com"></input>
                         </div>
                         <div className="mt-8 content-center">
                             <label className="text-sm font-bold text-gray-700 tracking-wide">Contraseña</label>
-                            <input className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="**************"></input>
+                            <input className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" value={userData.password} name="password" onChange={handleChange} type="password" placeholder="**************"></input>
                         </div>
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">

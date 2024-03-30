@@ -1,6 +1,44 @@
 import React from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import authActions from '../redux/actions/auth.actions';
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Register = () => {
+    const [userData, setUserData] = useState({ firstName: "", lastName: "", email: "", password: "", phone: "", adress: ""});
+    const dispatch = useDispatch();
+    const { login, current } = authActions;
+    const navigate = useNavigate();
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        axios.post("https://localhost:8080/api/User/register", userData)
+            .then(res => {
+                localStorage.setItem("token", res.data)
+                dispatch(login(res.data))
+                axios.get("https://localhost:8080/api/User/current", {
+                    headers: {
+                        Authorization: `Bearer ${res.data}`
+                    }
+                }).then(res => {
+                    dispatch(current(res.data))
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            })
+            .catch(err => {
+                alert(err.response.data)
+                console.log(err)
+            })
+    }
+
+    const handleChange = (e) => {
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+        console.log(userData)
+    }
+
     return (
         <>
             <div className="min-h-screen flex justify-center  py-12 px-4 sm:px-6 lg:px-8 items-center bg-gradient-to-br from-[#A62190] via-[#6583BF] to-[#48B0D9]">
@@ -11,35 +49,35 @@ const Register = () => {
                         </h2>
                         <p className="mt-2 text-sm text-gray-600">Completa los datos solicitados</p>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
+                    <form className="mt-8 space-y-6" onSubmit={handleRegister}>
                         <div className='flex flex-wrap justify-between'>
                             <div className="w-[49%]">
                                 <label className="text-sm font-bold text-gray-700 tracking-wide">Primer Nombre</label>
-                                <input className=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="Juan"></input>
+                                <input className=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" value={userData.firstName} name='firstName' onChange={handleChange} type="text" placeholder="Juan"></input>
                             </div>
                             <div className="w-[49%]">
                                 <label className="text-sm font-bold text-gray-700 tracking-wide">Primer Apellido</label>
-                                <input className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="Lopez"></input>
+                                <input className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" value={userData.lastName} name='lastName' onChange={handleChange} type="text" placeholder="Lopez"></input>
                             </div>
                         </div>
                         <div className='flex flex-wrap justify-between'>
                             <div className="w-[49%]">
                                 <label className="text-sm font-bold text-gray-700 tracking-wide">Telefono</label>
-                                <input className=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="313-123-4567"></input>
+                                <input className=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" value={userData.phone} name='phone' onChange={handleChange} type="text" placeholder="313-123-4567"></input>
                             </div>
                             <div className="w-[49%]">
                                 <label className="text-sm font-bold text-gray-700 tracking-wide">Direccion</label>
-                                <input className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="Calle 123 # 123 - 123"></input>
+                                <input className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" value={userData.adress} name='adress' onChange={handleChange} type="adress" placeholder="Calle 123 # 123 - 123"></input>
                             </div>
                         </div>
                         <div className='flex flex-wrap justify-between'>
                             <div className="w-[49%]">
                                 <label className="text-sm font-bold text-gray-700 tracking-wide">Correo electronico</label>
-                                <input className=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="juanlopez@example.com"></input>
+                                <input className=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" value={userData.email} name='email' onChange={handleChange} type="email" placeholder="juanlopez@example.com"></input>
                             </div>
                             <div className="w-[49%]">
                                 <label className="text-sm font-bold text-gray-700 tracking-wide">Contraseña</label>
-                                <input className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="************"></input>
+                                <input className="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" value={userData.password} name='password' onChange={handleChange} type="password" placeholder="************"></input>
                             </div>
                         </div>
                         <div className="flex items-center justify-between">

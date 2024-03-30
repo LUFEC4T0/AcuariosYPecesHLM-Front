@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <>
         <img className='w-[100%] h-[1.5rem]' src="../public/barraFooter.png" alt="" />
-            <footer className="bg-zinc-800 text-white text-center p-5 h-[20rem] flex flex-wrap justify-around">
+            <footer className="bg-gray-900 text-white text-center p-5 lg:h-[20rem] flex flex-wrap justify-around gap-5">
                 <div className='flex flex-col w-[18rem] justify-between p-3'>
                     <img className='w-[5rem]' src="../public/Acuarios HLM logo blanco (sin letras) PNG.png" alt="" />
                     <p className='mt-3 text-justify text-[.9rem] text-[#c9c9c9]' >Lorem ipsum dolor sit, amet consectetur adipisicing elit rvrcvr recerc er cercer cercerc cercerc cercertvrtbrtyb.</p>
