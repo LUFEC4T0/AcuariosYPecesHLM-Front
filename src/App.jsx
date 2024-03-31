@@ -8,6 +8,8 @@ import Register from './pages/Register'
 import About from './pages/About'
 import { Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
+import ClientInfo from './pages/ClientInfo'
+import Cart from './pages/Cart'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,7 +18,9 @@ function App() {
     <Routes>
       <Route path='/register' element={<Register/>}/>
       <Route path='/login' element={<Login/>}/>
-      <Route path='/login' element={<About/>}/>
+      <Route path='/about' element={<About/>}/>
+      <Route path='/clientinfo' element={<ClientInfo/>}/>
+      <Route path='/clientcart' element={<Cart/>}/>
     </Routes>
   )
 }
