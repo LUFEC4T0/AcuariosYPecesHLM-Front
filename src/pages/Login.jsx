@@ -13,16 +13,17 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        axios.post("https://localhost:8080/api/auth/login", userData)
+        axios.post("/api/auth/login", userData)
             .then(res => {
-                localStorage.setItem("token", res.data)
+                const token = localStorage.getItem("token", res.data)
                 dispatch(login(res.data))
-                axios.get("https://localhost:8080/api/current/", {
+                axios.get("/api/current/", {
                     headers: {
-                        Authorization: `Bearer ${res.data}`
+                        Authorization: `Bearer ${token}`
                     }
                 }).then(res => {
                     dispatch(current(res.data))
+                    console.log(res.data);
                 })
                 .catch(err => {
                     console.log(err);

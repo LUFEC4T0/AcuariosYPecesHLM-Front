@@ -8,8 +8,8 @@ const initialState = {
         email: "",
         loggedin: null,
     },
-    token: null,
-    timestamps: null
+    //token: null,
+    //timestamps: null
 }
 
 const authReducer = createReducer(initialState, (builder) => {
