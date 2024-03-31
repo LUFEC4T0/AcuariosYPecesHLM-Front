@@ -11,27 +11,31 @@ const Register = () => {
     const { login, current } = authActions;
     const navigate = useNavigate();
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
-        axios.post("https://localhost:8080/api/User/register", userData)
+        axios.post('http://localhost:8080/api/auth/register', userData)
             .then(res => {
-                localStorage.setItem("token", res.data)
-                dispatch(login(res.data))
-                axios.get("https://localhost:8080/api/User/current", {
-                    headers: {
-                        Authorization: `Bearer ${res.data}`
-                    }
-                }).then(res => {
-                    dispatch(current(res.data))
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                console.log(res.data)
+                if (res.data == "Your account was created successfully") {
+                    console.log(userData.email, userData.password);
+                    axios.post('http://localhost:8080/api/auth/login', {email:userData.email, password:userData.password})
+                        .then(res => {
+                            localStorage.setItem("token", res.data)
+                            dispatch(login(res.data))
+                            axios.get("http://localhost:8080/api/clients/current", {
+                                headers: {
+                                    Authorization: `Bearer ${res.data}`,
+                                }
+                                })
+                                .then(response => {
+                                    dispatch(current(response.data));
+                                })
+                                .catch(error => console.log(error));
+                        })
+                        .catch(err => console.log(err))
+                }
             })
-            .catch(err => {
-                alert(err.response.data)
-                console.log(err)
-            })
+            .catch(err => console.log(err))
     }
 
     const handleChange = (e) => {
