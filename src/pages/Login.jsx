@@ -10,25 +10,25 @@ const Login = () => {
     const dispatch = useDispatch();
     const { login, current } = authActions;
     const navigate = useNavigate();
+    const [employees, setEmployees] = useState([])
 
     const handleLogin = (e) => {
         e.preventDefault();
         axios.post("/api/auth/login", userData)
             .then(res => {
-                const token = localStorage.getItem("token", res.data)
                 dispatch(login(res.data))
-                axios.get("/api/current/", {
-                    headers: {
+                const token = localStorage.getItem('token')
+                axios.get("/api/employees/", {
+                    headers:{
                         Authorization: `Bearer ${token}`
                     }
-                }).then(res => {
-                    dispatch(current(res.data))
-                    console.log(res.data);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-
+                }).then(res => res.data.map(employee => {
+                    if(employee.email === userData.email) {
+                        console.log("entró a Employee");
+                        navigate("/admin")
+                    }
+                })).catch(err => console.log(err))
+                navigate("/")
             })
             .catch(err => {
                 
