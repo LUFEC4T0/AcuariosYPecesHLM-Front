@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import authActions from '../redux/actions/auth.actions';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
+import Login from './Login'
 
 const Register = () => {
     const [userData, setUserData] = useState({ firstName: "", lastName: "", email: "", password: "", phone: "", adress: ""});
@@ -97,9 +99,10 @@ const Register = () => {
                                 Registrarme
                             </button>
                         </div>
-                        <p className="flex items-center justify-center mt-10 text-center text-md text-gray-500">
-                            <span>¿Tienes una cuenta?<a href="#" className="text-[#48B0D9] hover:text-[#357e9b] no-underline cursor-pointer transition ease-in duration-300"> Iniciar sesion</a> </span>
-                        </p>
+                        <div className="flex items-center justify-center mt-10 text-center text-md text-gray-500">
+                            <p> ¿Tienes una cuenta? </p>
+                            <Link to="/Login"  className="text-[#48B0D9] hover:text-[#357e9b] no-underline cursor-pointer transition ease-in duration-300"> Iniciar sesion </Link>
+                        </div>
                     </form>
                 </div>
             </div>
