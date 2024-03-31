@@ -15,16 +15,16 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8080/api/auth/register', userData)
+        axios.post('/api/auth/register', userData)
             .then(res => {
                 console.log(res.data)
                 if (res.data == "Your account was created successfully") {
                     console.log(userData.email, userData.password);
-                    axios.post('http://localhost:8080/api/auth/login', {email:userData.email, password:userData.password})
+                    axios.post('/api/auth/login', {email:userData.email, password:userData.password})
                         .then(res => {
                             localStorage.setItem("token", res.data)
                             dispatch(login(res.data))
-                            axios.get("http://localhost:8080/api/clients/current", {
+                            axios.get("/api/current/", {
                                 headers: {
                                     Authorization: `Bearer ${res.data}`,
                                 }

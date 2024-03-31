@@ -1,31 +1,30 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const current = createAction("CURRENT", (data) => {
+const current = createAction('CURRENT', (data)=>{
+    
+    const dataFixed ={
+        name: data.name+' '+ data.lastName,
+        email: data.email
+    }
     return {
         payload: {
-            ...data,
-            loggedin: true,
+            ...dataFixed,
+            loggedIn:true
         }
     }
-});
+})
 
-const login = createAction("LOGIN", (token) => {
-    localStorage.setItem("token", token)
+const login = createAction('LOGIN', (token)=>{
+    localStorage.setItem('token', token)
     return {
         payload: {
             token,
-            timestamps: Date.now(),
+            timestamps: Date.now()
         }
     }
-});
+})
 
-const logout = createAction("LOGOUT", () => {
-    localStorage.removeItem("token");
-    return {
-        payload: null
-    }
-});
-
+const logout = createAction('LOGOUT');
 
 const actions = {
     current,
@@ -33,4 +32,4 @@ const actions = {
     logout
 }
 
-export default actions;
+export default  actions;

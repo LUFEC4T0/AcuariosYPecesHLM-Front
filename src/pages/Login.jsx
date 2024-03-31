@@ -13,25 +13,22 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        axios.post("https://localhost:8080/api/auth/login", userData)
+        axios.post("/api/auth/login", userData)
             .then(res => {
-                console.log("res.data ", res.data);
-
-                localStorage.setItem("token", res.data)
+                const token = localStorage.getItem("token", res.data)
                 dispatch(login(res.data))
-                if(res.data) {
-                    axios.get("https://localhost:8080/api/current/", {
-                        headers: {
-                            Authorization: `Bearer ${res.data}`
-                        }
-                        }).then(res => {
-                            dispatch(current(res.data))
-                            navigate("/")
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        })
+                axios.get("/api/current/", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
+                }).then(res => {
+                    dispatch(current(res.data))
+                    console.log(res.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+
             })
             .catch(err => {
                 
