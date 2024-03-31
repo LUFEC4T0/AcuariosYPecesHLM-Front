@@ -6,14 +6,18 @@ import Footer from './components/Footer'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import About from './pages/About'
+import { Route } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <Register />
-    </>
+    <Routes>
+      <Route path='/register' element={<Register/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/login' element={<About/>}/>
+    </Routes>
   )
 }
 
