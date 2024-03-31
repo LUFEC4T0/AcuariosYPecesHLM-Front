@@ -10,19 +10,29 @@ import { Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import ClientInfo from './pages/ClientInfo'
 import Cart from './pages/Cart'
+import MainLayout from './layouts/MainLayout'
+import Dashboard from './pages/Dashboard'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <Routes>
-      <Route path='/register' element={<Register/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/about' element={<About/>}/>
-      <Route path='/clientinfo' element={<ClientInfo/>}/>
-      <Route path='/clientcart' element={<Cart/>}/>
-    </Routes>
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<MainLayout/>}>
+                  <Route path="/" element={<Dashboard/>}/>
+                  <Route path="/about" element={<About/>}/>
+                  <Route path="*" element={<Login/>} />
+                  <Route path='/clientinfo' element={<ClientInfo/>}/>
+                  <Route path='/clientcart' element={<Cart/>}/>
+              </Route>
+              <Route path="/login" element={<Login/>} />
+              <Route path="/register" element={<Register/>} />
+
+          </Routes>
+      </BrowserRouter>
   )
 }
 
-export default App
+export default App;

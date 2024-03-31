@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import authActions from '../redux/actions/auth.actions';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
@@ -28,17 +28,19 @@ const Login = () => {
                 .catch(err => {
                     console.log(err);
                 })
+
             })
             .catch(err => {
-                alert(err.response.data)
+                
                 console.log(err)
             })
     }
 
     const handleChange = (e) => {
-        setUserData({ ...userData, [e.target.name]: e.target.value });
-        console.log(userData)
+        setUserData({...userData, [e.target.name]: e.target.value });
+        
     }
+    console.log(userData)
 
     return (
         <>
@@ -81,7 +83,7 @@ const Login = () => {
                         </div>
                         <p className="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
                             <span>¿No tiene una cuenta?</span>
-                            <a href="#" className="text-[#48B0D9] hover:text-[#357e9b] no-underline cursor-pointer transition ease-in duration-300">Registrate</a>
+                            <Link to="/register" className="text-[#48B0D9] hover:text-[#357e9b] no-underline cursor-pointer transition ease-in duration-300">Registrate</Link>
                         </p>
                     </form>
                 </div>
