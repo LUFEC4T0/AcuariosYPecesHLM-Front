@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import DashboardSystem from './pagesSystem/DashboardSystem'
 import ViewAllClients from './pagesSystem/ViewAllClients'
+import Shop from './pages/Shop'
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                   <Route path="*" element={<Login/>} />
                   <Route path='/clientinfo' element={<ClientInfo/>}/>
                   <Route path='/clientcart' element={<Cart/>}/>
+                  <Route path='/shop' element={<Shop/>}/>
               </Route>
 
               <Route path="/admin" element={<SystemLayout/>}>
