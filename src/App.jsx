@@ -17,7 +17,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import DashboardSystem from './pagesSystem/DashboardSystem'
 import Shop from './pages/Shop'
 import ViewAllClients from './pagesSystem/ViewAllClients'
-
+import Products from './pagesSystem/Products'
 
 function App() {
 
@@ -37,6 +37,7 @@ function App() {
               <Route path="/admin" element={<SystemLayout/>}>
                   <Route path="/admin" element={<DashboardSystem/>}/>
                   <Route path="/admin/viewAllClients" element={<ViewAllClients/>}/>
+                  <Route path="/admin/products" element={<Products/>}/>
               </Route>
 
               <Route path="/login" element={<Login/>} />

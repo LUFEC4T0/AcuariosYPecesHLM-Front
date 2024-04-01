@@ -14,7 +14,7 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        axios.post("/api/auth/login", userData)
+        axios.post("api/auth/login", userData)
 
             .then(res => {
                 dispatch(login(res.data))
