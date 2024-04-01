@@ -33,7 +33,7 @@ function App() {
 
               <Route path="/admin" element={<SystemLayout/>}>
                   <Route path="/admin" element={<DashboardSystem/>}/>
-                  <Route path="/admin/viewAllCLientsOnline" element={<ViewAllClients/>}/>
+                  <Route path="/admin/viewAllCLients" element={<ViewAllClients/>}/>
               </Route>
 
               <Route path="/login" element={<Login/>} />
