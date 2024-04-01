@@ -8,6 +8,8 @@ import Register from './pages/Register'
 import About from './pages/About'
 import MainLayout from './layouts/MainLayout'
 import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
@@ -19,6 +21,7 @@ function App() {
               <Route path="/" element={<MainLayout/>}>
                   <Route path="/" element={<Dashboard/>}/>
                   <Route path="/about" element={<About/>}/>
+                  <Route path="/home" element={<Home/>}/>
                   <Route path="*" element={<Login/>} />
               </Route>
               <Route path="/login" element={<Login/>} />

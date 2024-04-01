@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        axios.post("https://localhost:8080/api/auth/login", userData)
+        axios.post("http://localhost:8080/api/auth/login", userData)
             .then(res => {
                 console.log("res.data ", res.data);
 
