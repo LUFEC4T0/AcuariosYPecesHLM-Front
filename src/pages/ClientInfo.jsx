@@ -3,20 +3,20 @@ import axios from 'axios';
 
 const ClientInfo = () => {
     //Detector de token
-    
+    const token = localStorage.getItem('token');
     // Variable de estado con los datos del cliente
     const [clientData, setclientData] = useState();
 
     // Variable de estado para manejar la vista actual
-    const [clientInfo, setClientInfo] = useState('personalData');
+    const [clientTab, setClientTab] = useState('personalData');
 
     // Variables de estado para la edición de datos
     const [editando, setEditando] = useState(false);
     const [datosEditados, setDatosEditados] = useState(clientData);
 
     // Función para cambiar la vista actual
-    const changeTab = (clientinfo) => {
-        setClientInfo(clientinfo);
+    const changeTab = (clientab) => {
+        setClientTab(clientab);
     };
 
     // Función para manejar el cambio de datos editados
@@ -27,14 +27,23 @@ const ClientInfo = () => {
 
     // Función para guardar los datos editados
     const handleGuardar = () => {
-        setDatosCliente(datosEditados);
+        setclientData(datosEditados);
+        console.log(clientData)
         setEditando(false);
+        axios.post("/api/current/editData",datosEditados,{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(response =>{
+            alert("Data updated!")
+        }).catch(error=>{
+            alert.log("Something went wrong!")
+        })
     };
 
     // AL INICIO OBTENER DATOS DE CLIENTE
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
         axios.get("/api/current/", {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -59,16 +68,73 @@ const ClientInfo = () => {
             <div className="w-2/4 flex flex-col">
                 {clientData ? (
                     <div>
-                        <h2>Datos del cliente</h2>
-                        <p><strong>Nombre:</strong> {clientData.name}</p>
-                        <p><strong>Apellido:</strong> {clientData.lastName}</p>
-                        <p><strong>Correo electrónico:</strong> {clientData.email}</p>
-                        <p><strong>Teléfono:</strong> {clientData.phone}</p>
+                        {clientTab === 'personalData' && (
+                            <div>
+                                <h2>Datos del Cliente</h2>
+                                {editando ? (
+                                    <div className='flex flex-col'>
+                                        <label>
+                                            Nombre:
+                                            <input type="text" name="name" value={datosEditados.name} onChange={handleInputChange} />
+                                        </label>
+                                        <label>
+                                            Apellido:
+                                            <input type="text" name="lastName" value={datosEditados.lastName} onChange={handleInputChange} />
+                                        </label>
+                                        <label>
+                                            Correo electrónico:
+                                            <input type="email" name="email" value={datosEditados.email} onChange={handleInputChange} />
+                                        </label>
+                                        <label>
+                                            Teléfono:
+                                            <input type="tel" name="phone" value={datosEditados.phone} onChange={handleInputChange} />
+                                        </label>
+                                        <button onClick={handleGuardar}>Guardar</button>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <p><strong>Nombre:</strong> {clientData.name}</p>
+                                        <p><strong>Apellido:</strong> {clientData.lastName}</p>
+                                        <p><strong>Correo electrónico:</strong> {clientData.email}</p>
+                                        <p><strong>Teléfono:</strong> {clientData.phone}</p>
+                                        <p><strong>Adress:</strong> {clientData.adress}</p>
+                                        <button onClick={() => { setDatosEditados(clientData); setEditando(true); }}>Editar</button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    {clientTab === 'personalAdress' && (
+                    <div>
+                        <h2>Dirección de Envío</h2>
+                        <p><strong>Adress:</strong> {clientData.adress}</p>
                     </div>
-                    ):(<p>ERROR FETCHING DATA</p>)}
+                )}
+                    {clientTab === 'shopHistory' && (
+                        <div>
+                            <h2>Mis Compras</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Amount</th>
+                                        <th>Description</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>500</td>
+                                        <td>Oka</td>
+                                        <td>18-03-1997</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                    </div>
+                ) : (<p>Error fetching data</p>)}
             </div>
         </div>
-                )
+    );
 /*
             <div className="w-2/4 flex flex-col">
                 {clientInfo === 'personalData' && (
@@ -100,7 +166,6 @@ const ClientInfo = () => {
                                 <p><strong>Apellido:</strong> {clientData.lastName}</p>
                                 <p><strong>Correo electrónico:</strong> {clientData.email}</p>
                                 <p><strong>Teléfono:</strong> {clientData.phone}</p>
-
                                 <button onClick={() => { setDatosEditados(clientData); setEditando(true); }}>Editar</button>
                             </div>
                         )}

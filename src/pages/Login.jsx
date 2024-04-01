@@ -15,6 +15,7 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         axios.post("/api/auth/login", userData)
+
             .then(res => {
                 dispatch(login(res.data))
                 const token = localStorage.getItem('token')
@@ -28,7 +29,7 @@ const Login = () => {
                         navigate("/admin")
                     }
                 })).catch(err => console.log(err))
-                navigate("/")
+                navigate("/about")
             })
             .catch(err => {
                 
