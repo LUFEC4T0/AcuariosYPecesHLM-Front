@@ -10,7 +10,7 @@ import ClientInfo from './pages/ClientInfo'
 import Cart from './pages/Cart'
 import MainLayout from './layouts/MainLayout'
 import SystemLayout from './layouts/SystemLayout'
-import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import DashboardSystem from './pagesSystem/DashboardSystem'
 import Shop from './pages/Shop'
@@ -18,6 +18,8 @@ import ViewAllClients from './pagesSystem/ViewAllClients'
 import AllEmployees from './pagesSystem/AllEmployees'
 import CartsDetails from './componentsSystem/CartsDetails'
 import SalesDetails from './componentsSystem/SalesDetails'
+import ProductDetails from './pages/ProductDetails'
+
 
 
 function App() {
@@ -26,12 +28,14 @@ function App() {
       <BrowserRouter>
           <Routes>
               <Route path="/" element={<MainLayout/>}>
-                  <Route path="/" element={<Dashboard/>}/>
+                  <Route path="/" element={<Home/>}/>
                   <Route path="/about" element={<About/>}/>
+                  <Route path="/home" element={<Home/>}/>
                   <Route path="*" element={<Login/>} />
                   <Route path='/clientinfo' element={<ClientInfo/>}/>
                   <Route path='/clientcart' element={<Cart/>}/>
                   <Route path='/shop' element={<Shop/>}/>
+                  <Route path='/productdetails' element={<ProductDetails/>}/>
               </Route>
 
               <Route path="/admin" element={<SystemLayout/>}>

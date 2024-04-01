@@ -10,7 +10,7 @@ function Menu() {
                 <div className="flex flex-col items-center p-5 m-5 min-w-[20rem] gap-10 h-full">
                     <Link to="/admin/viewAllClients" className={className1}>Clients</Link>
                     <Link to="/#" className={className1}>Providers</Link>
-                    <Link to="/#" className={className1}>Products</Link>
+                    <Link to="/admin/products" className={className1}>Products</Link>
                     <Link to="/#" className={className1}>Purchases</Link>
                     <Link to="/admin/allEmployees" className={className1}>Employees</Link>
                     <div className="flex flex-row gap-5">
