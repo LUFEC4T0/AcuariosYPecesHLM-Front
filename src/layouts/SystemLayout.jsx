@@ -8,15 +8,14 @@ function SystemLayout(props) {
     return (
         <div className="">
             <HeaderSystem/>
-                <div className="flex flex-row">
-                    <div className="p-5 m-5 bg-gray-500 h-full">
+                <div className="flex flex-row h-screen p-5 m-5 gap-5">
+                    <div className="bg-gray-500 h-full">
                         <Menu/>
                     </div>
-                    <div className="p-5 m-5 bg-gray-500 w-screen">
+                    <div className="bg-gray-500 w-screen">
                         <Outlet />
                     </div>
                 </div>
-            <Footer/>
         </div>
     )
 }
