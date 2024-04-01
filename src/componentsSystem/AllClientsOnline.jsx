@@ -19,10 +19,10 @@ function AllClientsOnline() {
         .catch(err => console.log(err))
     }, [])
     return(
-        <div>
+        <div className="flex flex-wrap gap-11 m-5 justify-center text-white">
             {Object.keys(clients).length > 0 ? clients
             .map(client => <CardsClients key={client.clientOnlineID} name={client.name} lastName={client.lastName} email={client.email} adress={client.adress} phone={client.phone} balance={client.balance}>
-            </CardsClients>) : <h1>no hay clientes registrados</h1>}
+            </CardsClients>) : <h1>Cargando...</h1>}
             
         </div>
     )

@@ -3,7 +3,7 @@ import React from "react";
 function HeaderSystem() {
     return (
         <>
-            <main>
+            <main className="">
                 <div className="bg-gray-900 text-white text-center p-5 lg:h-[20rem] flex flex-wrap justify-around gap-5 max-h-11">
                     <h1 className="font-bold">System</h1>
                 </div>
