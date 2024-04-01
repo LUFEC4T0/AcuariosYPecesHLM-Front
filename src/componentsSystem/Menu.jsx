@@ -12,7 +12,7 @@ function Menu() {
                     <Link to="/#" className={className1}>Providers</Link>
                     <Link to="/admin/products" className={className1}>Products</Link>
                     <Link to="/#" className={className1}>Purchases</Link>
-                    <Link to="/#" className={className1}>Employees</Link>
+                    <Link to="/admin/allEmployees" className={className1}>Employees</Link>
                     <div className="flex flex-row gap-5">
                         <Link className={className2}>Logout</Link>
                         <Link className={className2}></Link>
