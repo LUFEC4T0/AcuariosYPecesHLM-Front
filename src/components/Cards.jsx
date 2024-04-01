@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const Cards = () => {
     const [products, setProducts] = useState([]);
@@ -22,11 +23,11 @@ const Cards = () => {
                     <p className="text-gray-600">{product.description}</p>
                     <div className="mt-4 flex flex-wrap justify-between items-center">
                         <span className="text-gray-800 font-bold">{product.finalPrice.toLocaleString( 'en-US', { style:'currency', currency:'USD' } )}</span>
-                        <a href="/productdetails">
+                        <Link to={`/productdetails/${product.productoDTOID}`}>
                             <button className="ml-2 bg-gray-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                            Ver Detalle
+                                Ver Detalle
                             </button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             ))}
