@@ -13,8 +13,8 @@ import SystemLayout from './layouts/SystemLayout'
 import Dashboard from './pages/Dashboard'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import DashboardSystem from './pagesSystem/DashboardSystem'
-import ViewAllClients from './pagesSystem/ViewAllClients'
 import Shop from './pages/Shop'
+import ViewAllClients from './pagesSystem/ViewAllClients'
 
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
 
               <Route path="/admin" element={<SystemLayout/>}>
                   <Route path="/admin" element={<DashboardSystem/>}/>
-                  <Route path="/admin/viewAllCLients" element={<ViewAllClients/>}/>
+                  <Route path="/admin/viewAllClients" element={<ViewAllClients/>}/>
               </Route>
 
               <Route path="/login" element={<Login/>} />

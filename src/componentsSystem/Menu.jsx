@@ -8,11 +8,11 @@ function Menu() {
         <>
             <div className="max-w-96">
                 <div className="flex flex-col items-center p-5 bg-gray-500 m-5 min-w-[20rem] gap-10 h-full">
-                    <Link href="/admin/viewAllClients" className={className1}>Clients</Link>
-                    <Link href="/#" className={className1}>Providers</Link>
-                    <Link href="/#" className={className1}>Products</Link>
-                    <Link href="/#" className={className1}>Purchases</Link>
-                    <Link href="/#" className={className1}>Employees</Link>
+                    <Link to="/admin/viewAllClients" className={className1}>Clients</Link>
+                    <Link to="/#" className={className1}>Providers</Link>
+                    <Link to="/#" className={className1}>Products</Link>
+                    <Link to="/#" className={className1}>Purchases</Link>
+                    <Link to="/#" className={className1}>Employees</Link>
                     <div className="flex flex-row gap-5">
                         <Link className={className2}>Logout</Link>
                         <Link className={className2}></Link>
