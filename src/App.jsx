@@ -15,7 +15,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import DashboardSystem from './pagesSystem/DashboardSystem'
 import Shop from './pages/Shop'
 import ViewAllClients from './pagesSystem/ViewAllClients'
+import AllEmployees from './pagesSystem/AllEmployees'
+import CartsDetails from './componentsSystem/CartsDetails'
+import SalesDetails from './componentsSystem/SalesDetails'
 import ProductDetails from './pages/ProductDetails'
+
 
 
 function App() {
@@ -37,6 +41,10 @@ function App() {
               <Route path="/admin" element={<SystemLayout/>}>
                   <Route path="/admin" element={<DashboardSystem/>}/>
                   <Route path="/admin/viewAllClients" element={<ViewAllClients/>}/>
+                  <Route path="/admin/viewAllClients/:id/:tipo" element={<CartsDetails/>}/>
+                  <Route path="/admin/allEmployees" element={<AllEmployees/>}/>
+                  <Route path="/admin/salesDetails/:id" element={<SalesDetails/>}/>
+                  
               </Route>
 
               <Route path="/login" element={<Login/>} />
