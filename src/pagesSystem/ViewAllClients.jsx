@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import CardsClients from "../componentsSystem/CardsClients";
 
-function ViewAllClients() {
+function AllClientsOnline() {
     const [clients, SetClients] = useState([])
     const token = localStorage.getItem('token')
     useEffect(() => {
@@ -28,4 +28,4 @@ function ViewAllClients() {
     )
 }
 
-export default ViewAllClients;
+export default AllClientsOnline;
