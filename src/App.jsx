@@ -22,7 +22,7 @@ import AllEmployees from './pagesSystem/AllEmployees'
 import CartsDetails from './componentsSystem/CartsDetails'
 import SalesDetails from './componentsSystem/SalesDetails'
 import ProductDetails from './pages/ProductDetails'
-import Purchases from './pagesSystem/Purchase'
+
 
 
 function App() {
@@ -44,13 +44,11 @@ function App() {
               <Route path="/admin" element={<SystemLayout/>}> 
                   <Route path="/admin" element={<DashboardSystem/>}/>
                   <Route path="/admin/viewAllClients" element={<ViewAllClients/>}/>
-
                   <Route path="/admin/products" element={<Products/>}/>
-
-                  <Route path="/admin/viewAllClients/:id/:tipo" element={<CartsDetails/>}/>
+                  <Route path="/admin/cartsDetails/:id/:tipo" element={<CartsDetails/>}/>
                   <Route path="/admin/allEmployees" element={<AllEmployees/>}/>
                   <Route path="/admin/salesDetails/:id" element={<SalesDetails/>}/>
-                  <Route path='/admin/purchases' element={<Purchases/>}/>
+                  
 
               </Route>
 
