@@ -4,10 +4,6 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [count, setCount] = useState(() => {
-    const storedCount = localStorage.getItem('cartCount');
-    return storedCount ? parseInt(storedCount) : 0;
-  });
 
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
@@ -17,27 +13,20 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const addToCart = (product) => {
-    const updatedCart = [...cart, product];
+    const productWithIndex = { ...product, id: cart.length };
+    const updatedCart = [...cart, productWithIndex];
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setCount(prevCount => prevCount + 1);
-    localStorage.setItem('cartCount', count + 1);
   };
 
-  const removeFromCart = (productId) => {
-    const updatedCart = cart.filter(item => item.id !== productId);
+  const removeFromCart = (index) => {
+    const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setCount(prevCount => prevCount - 1);
-    localStorage.setItem('cartCount', count - 1);
-  };
-
-  const getTotalItems = () => {
-    return count;
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, getTotalItems }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

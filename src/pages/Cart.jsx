@@ -60,22 +60,15 @@ function Cart() {
         <h2>Shopping Cart</h2>
         <div>
         <ul>
-        {cart.map(item => (
-          <li key={item.id}>
-            {item.name} - {item.price}
-            <button onClick={() => removeFromCart(item.id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+  {cart.map((item, index) => (
+    <li key={index}>
+      {item.name} - {item.price}
+      <button onClick={() => removeFromCart(index)}>Remove</button>
+    </li>
+  ))}
+</ul>
+
         </div>
-        <ul>
-          {items.map((item, index) => (
-            <li key={index}>
-              {item.name} - ${item.price}
-              <button onClick={() => removeItem(index)}>Remove</button>
-            </li>
-          ))}
-        </ul>
         <div>
           <strong>Subtotal:</strong> ${calculateSubtotal()}
           <br />
