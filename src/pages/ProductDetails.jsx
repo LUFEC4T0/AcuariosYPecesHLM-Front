@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from 'react-router-dom';
+import { useCart } from "../utils/cart";
 
 
 const ProductDetails = () => {
@@ -8,7 +9,9 @@ const ProductDetails = () => {
     const [productState, setProductsState] = useState([])
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
-    
+    const { addToCart } = useCart();
+    // Obtiene la lista de carrito del localStorage o crea una nueva si no existe
+
     useEffect (() => {
         axios.get('/api/products/all')
         .then(res => {
@@ -19,6 +22,12 @@ const ProductDetails = () => {
             err => console.log(err)
         )
     }, [])
+
+    const handleAddToCart = () => {
+        addToCart(productState);
+        console.log(addToCart)
+        // También puedes redirigir al usuario a la página de checkout u otra página aquí
+      };
 
     return (
         <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
@@ -68,6 +77,7 @@ const ProductDetails = () => {
 						py-4
 						hover:bg-gray-700
 					"
+                    onClick={handleAddToCart}
                 >
                     <svg className="mr-3" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.02301 7.18999C7.48929 6.72386 7.80685 6.12992 7.93555 5.48329C8.06425 4.83666 7.9983 4.16638 7.74604 3.55724C7.49377 2.94809 7.06653 2.42744 6.51835 2.06112C5.97016 1.6948 5.32566 1.49928 4.66634 1.49928C4.00703 1.49928 3.36252 1.6948 2.81434 2.06112C2.26615 2.42744 1.83891 2.94809 1.58665 3.55724C1.33439 4.16638 1.26843 4.83666 1.39713 5.48329C1.52583 6.12992 1.8434 6.72386 2.30968 7.18999L4.66634 9.54749L7.02301 7.18999Z" stroke="white" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
