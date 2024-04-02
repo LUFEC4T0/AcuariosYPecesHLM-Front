@@ -48,6 +48,8 @@ function App() {
                   <Route path="/admin/cartsDetails/:id/:tipo" element={<CartsDetails/>}/>
                   <Route path="/admin/allEmployees" element={<AllEmployees/>}/>
                   <Route path="/admin/salesDetails/:id" element={<SalesDetails/>}/>
+                  <Route path="/admin/viewAllProviders" element={<ViewAllProvider/>}/>
+                  <Route path="/admin/newClientStore" element={<NewClientStore/>}/>
                   
 
               </Route>
