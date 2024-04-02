@@ -22,7 +22,7 @@ function AllProvider() {
 
             {Object.keys(providers).length > 0 ? providers.map(provider => 
                 <CardProvider key={provider.providerID} provider={provider}></CardProvider> 
-            ) : <h1 className="font-bold text-white text-xl underline">No hay proveedores registrados</h1>}
+            ) : <h1 className="font-bold text-red-900 text-xl underline">No hay proveedores registrados</h1>}
 
         </main>
     )

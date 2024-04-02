@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Anchor(props) {
+function Anchor(props, {entidad}) {
     return (
-        <Link to=""></Link>
+        <Link to={props.href} className={props.className} entidad={entidad}>{props.description}</Link>
     )
 }
 

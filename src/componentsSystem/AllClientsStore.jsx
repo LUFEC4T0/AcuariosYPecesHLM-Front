@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import CardsClientsStore from "./CardsClientsStore";
+import { Link } from "react-router-dom";
 
 function AllClientsStore() {
     const [clients, SetClients] = useState([])
@@ -20,7 +21,7 @@ function AllClientsStore() {
     }, [])
     return(
         <div className="flex flex-col gap-5 p-5 items-center">
-            <button className="self-center border p-5  text-white">+Añadir Cliente</button>
+            <Link to={"/admin/newClientStore"} className="self-center font-bold border-2 border-black p-2 text-balck">+Añadir Cliente</Link>
 
             <div className="flex flex-wrap gap-5 justify-center">
                 {Object.keys(clients).length > 0 ? clients
