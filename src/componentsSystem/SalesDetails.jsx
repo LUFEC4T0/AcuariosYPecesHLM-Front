@@ -24,7 +24,7 @@ function SalesDetails({sale}) {
         <main className="flex flex-col m-5 gap-2">
             <h1 className="font-bold text-white text-2xl underline text-center">VENTAS</h1>
             <div className="flex flex-wrap justify-center gap-5 m-11">
-                {Object.keys(employee).length > 0 ? employee.sales.map(sale => <CardSales key={sale.id} sale={sale}></CardSales>) : <h1>No hay venta registradas</h1>}
+                {Object.keys(employee).length > 0 ? employee.sales.map(sale => <CardSales key={sale.id} sale={sale}></CardSales>) : <h1 className="text-white font-bol">No hay venta registradas</h1>}
             </div>
         </main>
     )
