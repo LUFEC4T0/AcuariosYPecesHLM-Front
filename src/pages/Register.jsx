@@ -49,6 +49,7 @@ const Register = () => {
         <>
             <div className="min-h-screen flex justify-center  py-12 px-4 sm:px-6 lg:px-8 items-center bg-gradient-to-br from-[#A62190] via-[#6583BF] to-[#48B0D9]">
                 <div className="space-y-8 p-10 bg-white rounded-xl z-10">
+=======
                     <div className='flex justify-center gap-[6rem]'>
                         <img className='max-w-[5rem] py-2' src="../public/Acuarios HLM logo color (sin letras) PNG.png" alt="" />
                         <div className='text-center'>
