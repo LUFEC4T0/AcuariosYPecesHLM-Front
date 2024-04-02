@@ -22,7 +22,6 @@ import AllEmployees from './pagesSystem/AllEmployees'
 import CartsDetails from './componentsSystem/CartsDetails'
 import SalesDetails from './componentsSystem/SalesDetails'
 import ProductDetails from './pages/ProductDetails'
-import ViewAllProvider from './pagesSystem/ViewAllProvider'
 import NewClientStore from './pagesSystem/NewClientStore'
 
 
@@ -50,8 +49,8 @@ function App() {
                   <Route path="/admin/cartsDetails/:id/:tipo" element={<CartsDetails/>}/>
                   <Route path="/admin/allEmployees" element={<AllEmployees/>}/>
                   <Route path="/admin/salesDetails/:id" element={<SalesDetails/>}/>
-                  <Route path="/admin/viewAllProviders" element={<ViewAllProvider/>}/>
                   <Route path="/admin/newClientStore" element={<NewClientStore/>}/>
+
                   
 
               </Route>

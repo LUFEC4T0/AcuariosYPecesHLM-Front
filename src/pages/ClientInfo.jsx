@@ -61,7 +61,7 @@ const ClientInfo = () => {
                 <div className="flex flex-row place-content-center place-items-center w-[90%] bg-white text-black text-center p-5 justify-around">
                     <div className="w-[20%] flex flex-col justify-center h-[20rem] gap-5 text-gray-900 p-3 rounded-xl">
                         <button
-                            className={`border-[2px] py-3 rounded-xl hover:bg-gray-900 hover:text-white hover:scale-95 ${clientTab === "personalData"
+                            className={`border-[2px] py-3 rounded-xl hover:bg-gray-900 hover:text-white hover:scale-95 shadow-3xl ${clientTab === "personalData"
                                 ? "border-gray-900 bg-gray-900 text-white"
                                 : "border-gray-500"
                                 }`}
@@ -70,7 +70,7 @@ const ClientInfo = () => {
                             Datos personales
                         </button>
                         <button
-                            className={`border-[2px] py-3 rounded-xl hover:bg-gray-900 hover:text-white hover:scale-95 ${clientTab === "personalAdress"
+                            className={`border-[2px] py-3 rounded-xl hover:bg-gray-900 hover:text-white hover:scale-95 shadow-3xl ${clientTab === "personalAdress"
                                 ? "border-gray-900 bg-gray-900 text-white"
                                 : "border-gray-500"
                                 }`}
@@ -79,7 +79,7 @@ const ClientInfo = () => {
                             Dirección de Envío
                         </button>
                         <button
-                            className={`border-[2px] py-3 rounded-xl hover:bg-gray-900 hover:text-white hover:scale-95 ${clientTab === "shopHistory"
+                            className={`border-[2px] py-3 rounded-xl hover:bg-gray-900 hover:text-white hover:scale-95 shadow-3xl ${clientTab === "shopHistory"
                                 ? "border-gray-900 bg-gray-900 text-white"
                                 : "border-gray-500"
                                 }`}
@@ -199,9 +199,11 @@ const ClientInfo = () => {
                                     </div>
                                 )}
                                 {clientTab === "personalAdress" && (
-                                    <div>
-                                        <h2>Dirección de Envío</h2>
-                                        <p>
+                                    <div className="flex flex-col gap-6 items-center p-5">
+                                        <h2 className="text-gray-900 text-3xl">
+                                            <strong>Direccion de envio</strong>
+                                        </h2>
+                                        <p className="border border-gray-800 rounded-md py-2 px-5 w-[49%] bg-gray-800 text-gray-300 text-start">
                                             <strong>Dirección:</strong> {clientData.adress}
                                         </p>
                                     </div>

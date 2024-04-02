@@ -29,7 +29,7 @@ const Login = () => {
                         navigate("/admin")
                     }
                 })).catch(err => console.log(err))
-                navigate("/about")
+                navigate("/home")
             })
             .catch(err => {
                 
@@ -51,7 +51,7 @@ const Login = () => {
                         <img className='max-w-[5rem] py-2' src="../public/Acuarios HLM logo color (sin letras) PNG.png" alt="" />
                         <div className='text-center'>
                             <h1 className='mt-6 text-3xl font-bold text-gray-900'>HLM</h1>
-                            <p className="mt-2 text-sm text-gray-600">Acuarios y Peces</p>
+                            <p className="mt-2 text-md text-gray-600">Acuarios y Peces</p>
                         </div>
                         
                     </div>
