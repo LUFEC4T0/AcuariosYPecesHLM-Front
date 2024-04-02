@@ -10,7 +10,7 @@ function CardsEmployees({employee}) {
             <div>Apellido: {employee.lastName}</div>
             <div>Email: {employee.email}</div>
             <div>Puesto: {employee.workPosition}</div>
-            <Link to={`/admin/salesDetails/${employee.employeeID}`} className="underline self-end">Ventas</Link>
+            <Link to={`/admin/salesDetails/${employee.employeeID}`} className="underline self-end text-green-900">Ver Ventas</Link>
 
         </main>
     )
