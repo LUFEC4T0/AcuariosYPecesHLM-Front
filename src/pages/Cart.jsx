@@ -2,57 +2,25 @@ import React, { useState } from 'react';
 import { useCart } from '../utils/cart';
 
 function Cart() {
+  const shippingPrice = 100; 
+  const { cart, removeFromCart } = useCart();
+  const [quantities, setQuantities] = useState(Array(cart.length).fill(1));
 
-  const [items, setItems] = useState([]);
-  const [itemName, setItemName] = useState('');
-  const [itemPrice, setItemPrice] = useState('');
-  const [subtotal, setSubtotal] = useState(0);
-  const shippingPrice = 10; 
-  const taxRate = 0.1; 
-  const { cart, addToCart, removeFromCart } = useCart();
 
-  const handleNameChange = (e) => {
-    setItemName(e.target.value);
-  };
-
-  const handlePriceChange = (e) => {
-    setItemPrice(parseFloat(e.target.value));
-  };
-
-  const addItem = () => {
-    if (itemName && itemPrice) {
-      const newItem = {
-        name: itemName,
-        price: itemPrice
-      };
-      setItems([...items, newItem]);
-      setItemName('');
-      setItemPrice('');
-    }
-  };
-
-  const removeItem = (index) => {
-    const updatedItems = [...items];
-    updatedItems.splice(index, 1);
-    setItems(updatedItems);
-  };
-
-  // Calculate subtotal of items in the cart
-  const calculateSubtotal = () => {
-    let total = 0;
-    items.forEach((item) => {
-      total += item.price;
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    cart.forEach((item, index) => {
+      totalPrice += item.finalPrice * quantities[index];
     });
-    return total;
+    return totalPrice;
   };
 
-  // Calculate total amount including tax and shipping
-  const calculateTotal = () => {
-    const subtotal = calculateSubtotal();
-    const tax = subtotal * taxRate;
-    const total = subtotal + tax + shippingPrice;
-    return total.toFixed(2);
+  const handleQuantityChange = (index, event) => {
+    const newQuantities = [...quantities];
+    newQuantities[index] = parseInt(event.target.value, 10); 
+    setQuantities(newQuantities);
   };
+
 
   return (
     <div style={{ display: 'flex' }}>
@@ -60,30 +28,34 @@ function Cart() {
         <h2>Shopping Cart</h2>
         <div>
         <ul>
-        {cart.map(item => (
-          <li key={item.id}>
-            {item.name} - {item.price}
-            <button onClick={() => removeFromCart(item.id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+  {cart.map((item, index) => (
+    <li key={index}>
+      {"Producto: " + item.name} - 
+      {"  Precio: " +item.finalPrice} - 
+      {"  Descuento:"+ -item.finalPrice * (item.promos/100)} -
+      Cantidad <input 
+            type="number" 
+            step="1" 
+            min="1" 
+            max={item.stock} 
+            value={quantities[index]} 
+            onChange={(event) => handleQuantityChange(index, event)}
+          />
+       {"Total: "+ item.finalPrice * (1-item.promos/100) * quantities[index]} 
+
+      <button onClick={() => removeFromCart(index)}>Remove</button>
+    </li>
+  ))}
+</ul>
         </div>
-        <ul>
-          {items.map((item, index) => (
-            <li key={index}>
-              {item.name} - ${item.price}
-              <button onClick={() => removeItem(index)}>Remove</button>
-            </li>
-          ))}
-        </ul>
         <div>
-          <strong>Subtotal:</strong> ${calculateSubtotal()}
+          <strong>Subtotal:</strong> {calculateTotalPrice()}
           <br />
           <strong>Shipping Price:</strong> ${shippingPrice}
           <br />
-          <strong>Taxes:</strong> ${(calculateSubtotal() * taxRate).toFixed(2)}
+          <strong>Taxes:</strong> ${calculateTotalPrice()* 0.21} 
           <br />
-          <strong>Total:</strong> ${calculateTotal()}
+          <strong>Total:</strong> ${calculateTotalPrice()* 0.21+ calculateTotalPrice()+shippingPrice}
         </div>
       </div>
       <div>
