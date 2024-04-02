@@ -13,8 +13,15 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const addToCart = (product) => {
-    const productWithIndex = { ...product, id: cart.length };
-    const updatedCart = [...cart, productWithIndex];
+    // Verificar si ya existe un producto con el mismo productIDDTO en el carrito
+    const existingProductIndex = cart.findIndex(item => item.productoDTOID === product.productoDTOID);
+    if (existingProductIndex !== -1) {
+      // Si ya existe, no hacer nada o podrías mostrar un mensaje de error
+      return;
+    }
+
+    // Si no existe, agregar el nuevo producto al carrito
+    const updatedCart = [...cart, product];
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
