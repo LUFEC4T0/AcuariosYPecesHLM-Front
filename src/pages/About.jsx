@@ -5,7 +5,6 @@ import Header from '../components/Header'
 const About = () => {
   return (
     <>
-      <Header />
       <section className="text-black bg-white font-cooper">
         <div className="container px-5 py-24 mx-auto flex flex-col">
           <div className="lg:w-4/6 mx-auto">
@@ -33,7 +32,6 @@ const About = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   )
 }
