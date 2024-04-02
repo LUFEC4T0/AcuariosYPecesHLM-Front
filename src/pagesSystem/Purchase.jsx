@@ -62,7 +62,7 @@ const Purchases = () => {
         })
     },[])
 
-    
+
 
     console.log(purchases)
 
@@ -87,7 +87,7 @@ const Purchases = () => {
     },[])
 
     return (
-        <>
+        <div >
             <div className="flex justify-center items-center gap-10 p-10 ">
                 <button onClick={handleclick} className="font-bold text-center mt-11 mx-2 bg-gray-300 h-11 border-2 w-40 max-w-[30rem]">Ver Compras</button>
                 <button onClick={handleclick} className="font-bold text-center mt-11 mx-2 bg-gray-300 h-11 border-2 w-40 max-w-[30rem]">Nueva Compra</button>
@@ -132,7 +132,7 @@ const Purchases = () => {
                     </form>
                 </div>
             </div>}
-        </>
+        </div>
     )
 }
 
