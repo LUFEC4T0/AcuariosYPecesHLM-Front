@@ -29,7 +29,7 @@ const Login = () => {
                         navigate("/admin")
                     }
                 })).catch(err => console.log(err))
-                navigate("/about")
+                navigate("/home")
             })
             .catch(err => {
                 
