@@ -49,7 +49,16 @@ const Register = () => {
         <>
             <div className="min-h-screen flex justify-center  py-12 px-4 sm:px-6 lg:px-8 items-center bg-gradient-to-br from-[#A62190] via-[#6583BF] to-[#48B0D9]">
                 <div className="space-y-8 p-10 bg-white rounded-xl z-10">
+                    <div className='flex justify-between gap-11'>
+                        <img className='max-w-[5rem] py-2' src="../public/Acuarios HLM logo color (sin letras) PNG.png" alt="" />
+                        <div className='text-center mr-16'>
+                            <h1 className='mt-6 text-3xl font-bold text-gray-900'>HLM</h1>
+                            <p className="mt-2 text-sm text-gray-600">Acuarios y Peces</p>
+                        </div>
+                        <div></div>
+                    </div>
                     <div className="text-center">
+                        <div className='border-t-2 border-black '></div>
                         <h2 className="mt-4 text-3xl font-bold text-gray-900">
                             ¡Registrate!
                         </h2>

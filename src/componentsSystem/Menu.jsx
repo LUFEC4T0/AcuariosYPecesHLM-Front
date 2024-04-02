@@ -25,7 +25,7 @@ function Menu() {
                     <Link to="/admin/viewAllClients" className={className1}>Clientes</Link>
                     <Link to="/admin/viewAllProviders" className={className1}>Proveedores</Link>
                     <Link to="/admin/products" className={className1}>Productos</Link>
-                    <Link to="/#" className={className1}>Compras</Link>
+                    <Link to="#" className={className1}>Compras</Link>
                     <Link to="/admin/allEmployees" className={className1}>Empleados</Link>
                     <Link className={className1}>Ventas</Link>
                     <div className={className1}></div>
