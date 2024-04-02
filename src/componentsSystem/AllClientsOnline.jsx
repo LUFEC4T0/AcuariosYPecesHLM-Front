@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import CardsClients from "./CardsClients";
+import CardsClientsOnline from "./CardsClientsOnline";
 
 function AllClientsOnline() {
     const [clients, SetClients] = useState([])
@@ -19,10 +19,10 @@ function AllClientsOnline() {
         .catch(err => console.log(err))
     }, [])
     return(
-        <div className="flex flex-wrap gap-11 m-5 justify-center text-white">
+        <div className="flex flex-wrap gap-5 p-5 justify-center">
             {Object.keys(clients).length > 0 ? clients
-            .map(client => <CardsClients key={client.clientOnlineID} name={client.name} lastName={client.lastName} email={client.email} adress={client.adress} phone={client.phone} balance={client.balance}>
-            </CardsClients>) : <h1>Cargando...</h1>}
+            .map(client => <CardsClientsOnline key={client.clientOnlineID} client={client}>
+            </CardsClientsOnline>) : <h1>Cargando...</h1>}
             
         </div>
     )

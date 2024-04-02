@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import CardsClients from "./CardsClients";
+import CardsClientsStore from "./CardsClientsStore";
 
 function AllClientsStore() {
     const [clients, SetClients] = useState([])
@@ -19,13 +19,13 @@ function AllClientsStore() {
         .catch(err => console.log(err))
     }, [])
     return(
-        <div className="flex flex-col items-center m-20 gap-5">
+        <div className="flex flex-col gap-5 p-5 items-center">
             <button className="self-center border p-5  text-white">+Añadir Cliente</button>
 
-            <div className="flex flex-wrap gap-11 justify-center">
+            <div className="flex flex-wrap gap-5 justify-center">
                 {Object.keys(clients).length > 0 ? clients
-                .map(client => <CardsClients key={client.clientStoreID} name={client.name} lastName={client.lastName} email={client.rut} adress={client.adress} phone={client.phone} balance={client.balance}>
-                </CardsClients>) : <h1>Cargando...</h1>}
+                .map(client => <CardsClientsStore key={client.clientStoreID} client={client}>
+                </CardsClientsStore>) : <h1>Cargando...</h1>}
             </div>
         </div>
     )

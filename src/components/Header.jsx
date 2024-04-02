@@ -9,7 +9,7 @@ function Header() {
 
     return (
         <>
-        <div className="relative bg-white shadow dark:bg-gray-900 md:flex md:justify-around">
+        <div className="relative bg-white shadow dark:bg-gray-900 md:flex md:justify-around ">
             <div className="px-6 py-4 md:flex md:justify-between md:items-center">
                 <div className="flex items-center justify-between">
                     <a href="#">

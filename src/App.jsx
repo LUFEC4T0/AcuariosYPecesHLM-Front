@@ -15,7 +15,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import DashboardSystem from './pagesSystem/DashboardSystem'
 import Shop from './pages/Shop'
 import ViewAllClients from './pagesSystem/ViewAllClients'
+
+import Products from './pagesSystem/Products'
+
+import AllEmployees from './pagesSystem/AllEmployees'
+import CartsDetails from './componentsSystem/CartsDetails'
+import SalesDetails from './componentsSystem/SalesDetails'
 import ProductDetails from './pages/ProductDetails'
+import ViewAllProvider from './pagesSystem/ViewAllProvider'
+
 
 
 function App() {
@@ -31,12 +39,21 @@ function App() {
                   <Route path='/clientinfo' element={<ClientInfo/>}/>
                   <Route path='/clientcart' element={<Cart/>}/>
                   <Route path='/shop' element={<Shop/>}/>
-                  <Route path='/productdetails' element={<ProductDetails/>}/>
+                  <Route path='/productdetails/:id' element={<ProductDetails/>}/>
               </Route>
 
-              <Route path="/admin" element={<SystemLayout/>}>
+              <Route path="/admin" element={<SystemLayout/>}> 
                   <Route path="/admin" element={<DashboardSystem/>}/>
                   <Route path="/admin/viewAllClients" element={<ViewAllClients/>}/>
+
+                  <Route path="/admin/products" element={<Products/>}/>
+
+                  <Route path="/admin/viewAllClients/:id/:tipo" element={<CartsDetails/>}/>
+                  <Route path="/admin/allEmployees" element={<AllEmployees/>}/>
+                  <Route path="/admin/salesDetails/:id" element={<SalesDetails/>}/>
+                  <Route path="/admin/viewAllProviders" element={<ViewAllProvider/>}/>
+                  
+
               </Route>
 
               <Route path="/login" element={<Login/>} />
