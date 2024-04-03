@@ -23,44 +23,74 @@ function Cart() {
 
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{ marginRight: '20px' }}>
+    <div className=''>
+      <div className='flex justify-around'>
+        <div className='flex flex-col'>
         <h2>Shopping Cart</h2>
-        <div>
-        <ul>
-  {cart.map((item, index) => (
-    <li key={index}>
-      {"Producto: " + item.name} - 
-      {"  Precio: " +item.finalPrice} - 
-      {"  Descuento:"+ -item.finalPrice * (item.promos/100)} -
-      Cantidad <input 
-            type="number" 
-            step="1" 
-            min="1" 
-            max={item.stock} 
-            value={quantities[index]} 
-            onChange={(event) => handleQuantityChange(index, event)}
-          />
-       {"Total: "+ item.finalPrice * (1-item.promos/100) * quantities[index]} 
+        <div className=''>
+        <ul className=''>
+        {cart.map((item, index) => (
+        <li key={index} className='flex flex-col justify-center items-start gap-5'>
+          <div className='flex gap-5'>
+            <p className='font-bold'>
+              Producto: 
+            </p>
+            {item.name}
+          </div>
+          <div className='flex gap-5'>
+            <p className='font-bold'>
+              Precio:
+            </p>
+            {item.finalPrice}
+          </div>
+          <div className='flex gap-5'>
+            <p className='font-bold'>Descuento:</p>
+            {item.finalPrice * (item.promos/100)}
+          </div>
+          <div className='flex gap-5'>
+            <p className='font-bold'>Cantidad:</p>
+            <input 
+                type="number" 
+                step="1" 
+                min="1" 
+                max={item.stock} 
+                value={quantities[index]} 
+                onChange={(event) => handleQuantityChange(index, event)}
+              />
+          </div>
+          <p>
+            {"Total: "+ item.finalPrice * (1-item.promos/100) * quantities[index]} 
+          </p>
+       
 
-      <button onClick={() => removeFromCart(index)}>Remove</button>
-    </li>
-  ))}
-</ul>
-        </div>
-        <div>
-          <strong>Subtotal:</strong> {calculateTotalPrice()}
-          <br />
-          <strong>Shipping Price:</strong> ${shippingPrice}
-          <br />
-          <strong>Taxes:</strong> ${calculateTotalPrice()* 0.21} 
-          <br />
-          <strong>Total:</strong> ${calculateTotalPrice()* 0.21+ calculateTotalPrice()+shippingPrice}
-        </div>
+        <button onClick={() => removeFromCart(index)}>Remove</button>
+      </li>
+      ))}
+    </ul>
+</div>
       </div>
-      <div>
-        <button style={{ padding: '10px 20px', fontSize: '16px' }}>Pay Now</button>
-      </div>
+        <div className='flex flex-col justify-center items-start gap-5'>
+          <div className='flex gap-5'>
+            <p className='font-bold'>Subtotal:</p> 
+            {calculateTotalPrice()}
+          </div>
+          <div className='flex gap-5'>
+            <p className='font-bold'>Shipping Price:</p> 
+            ${shippingPrice}
+          </div>
+          <div className='flex gap-5'>
+            <p className='font-bold'>Taxes:</p>
+            ${calculateTotalPrice()* 0.21} 
+          </div>
+          <div className='flex gap-5'>
+            <p className='font-bold'>Total:</p>
+            ${calculateTotalPrice()* 0.21+ calculateTotalPrice()+shippingPrice}
+          </div>
+          <div>
+          <button style={{ padding: '10px 20px', fontSize: '16px' }}>Pay Now</button>
+          </div>
+        </div>
+        </div>
     </div>
   );
 }
