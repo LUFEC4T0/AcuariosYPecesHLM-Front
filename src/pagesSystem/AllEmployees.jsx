@@ -20,7 +20,8 @@ function AllEmployees() {
 
     return (
         <main className="flex flex-col m-5 items-center">
-            <h1 className="font-bold text-white text-xl">Employees</h1>
+            <h1 className="text-white text-2xl mb-5">Employees</h1>
+            <div className="border-t border-2 border-white w-[50rem]"></div>
             <div className="flex flex-wrap justify-center">
                 {Object.keys(employees).length > 0 ? employees.map(employee => <CardsEmployees key={employee.employeeID} employee={employee}></CardsEmployees>) : <h1 className="text-xl font-bold underline text-red-900 text-center m-5">No hay empleados registrados</h1>}
             </div>

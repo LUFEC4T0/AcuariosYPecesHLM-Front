@@ -9,13 +9,13 @@ function Menu() {
 
     function handleClick(e) {
         localStorage.removeItem('token')
-        // swal({
-        //     text: "Closed Session",
-        //     icon: "error",
-        //     button: "accept",
-        //     timer: "2000"
+        swal({
+            text: "Sesión Cerrada",
+            icon: "error",
+            button: "accept",
+            timer: "2000"
 
-        // })
+        })
         navigate('/login')
     }
     return (
