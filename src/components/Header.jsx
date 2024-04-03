@@ -3,6 +3,7 @@ import { useCart } from '../utils/cart';
 import { Link } from 'react-router-dom';
 function Header() {
     const token = localStorage.getItem("token");
+    const cart = localStorage.getItem("cart")
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -16,7 +17,7 @@ function Header() {
     
     return (
         <>
-        <div className="relative shadow bg-gray-900 md:flex md:justify-around ">
+        <div className="relative shadow bg-gray-900 md:flex md:justify-around md:sticky md:top-0 md:z-50">
             <div className="px-6 py-4 md:flex md:justify-between md:items-center">
                 <div className="flex items-center justify-between">
                     <a href="#">

@@ -120,7 +120,7 @@ function Cart() {
           <option value="DEBIT" selected>DEBIT</option>
           <option value= "CREDIT">CREDIT</option>
         </select>
-      
+    
       </div>
         <div className='flex flex-col justify-center items-start gap-5'>
           <div className='flex gap-5'>

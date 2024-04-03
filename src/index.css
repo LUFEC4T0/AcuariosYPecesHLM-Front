@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 .fondo {
-  background-image: url(./assets/fondo3.png);
+  background-image: url(./public/fondo3.png);
   background-size: cover;
   width: 100%;
   margin-bottom: 400px;
@@ -30,4 +30,10 @@
   background-repeat: no-repeat;
   filter: blur(3px) brightness(100%) contrast(90%); 
   z-index: -1;
+}
+
+@media (max-width: 410px) {
+  .fondo {
+    background-position: left -10rem;
+  }
 }

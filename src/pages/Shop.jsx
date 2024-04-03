@@ -200,7 +200,7 @@ function Shop() {
             </div>
             <div className="flex justify-center">
                 <div className="flex pr-3 pl-3 py-5 gap-5 flex-wrap min-h-3/5 w-[1440px] justify-center sm:pt-3">
-                    <div className="flex flex-col gap-4 w-[25%] sm:w-full md:h-[28rem] lg:h-[30rem] border-[3px] bg-gray-900 p-1 rounded-xl border-gray-900 justify-center md:sticky md:top-5 sm:gap-2">
+                    <div className="flex flex-col gap-4 w-[25%] sm:w-full md:h-[28rem] lg:h-[30rem] border-[3px] bg-gray-900 p-1 rounded-xl border-gray-900 justify-center md:sticky md:top-[6.3rem] sm:gap-2">
                         <div className="flex justify-center">
                             <h1 className="font-bold text-white text-2xl">Filtros</h1>
                         </div>
@@ -220,17 +220,17 @@ function Shop() {
                                 />
                             </div>
                         </div>
-                            <div>
-                                <PriceFilter
-                                    minPrice={minPriceFilter}
-                                    maxPrice={maxPriceFilter}
-                                    onMinPriceChange={handleMinPriceChange}
-                                    onMaxPriceChange={handleMaxPriceChange}
-                                />
-                            </div>
-                            <div>
-                                <DiscountFilter onDiscountChange={handleDiscountChange} />
-                            </div>
+                        <div>
+                            <PriceFilter
+                                minPrice={minPriceFilter}
+                                maxPrice={maxPriceFilter}
+                                onMinPriceChange={handleMinPriceChange}
+                                onMaxPriceChange={handleMaxPriceChange}
+                            />
+                        </div>
+                        <div>
+                            <DiscountFilter onDiscountChange={handleDiscountChange} />
+                        </div>
                         <div className="flex justify-center gap-3 sm:mb-2">
                             <button
                                 className="border border-gray-700 bg-gray-900 text-gray-200 px-4 py-3 rounded-md sm:px-3 sm:py-1"
@@ -248,33 +248,43 @@ function Shop() {
                         </div>
                         <div className="w-full">
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-5 md:grid-cols-2">
-                                {filteredProducts.map((product) => (
-                                    <div
-                                        key={product.id}
-                                        className="bg-white rounded-lg shadow-lg p-4"
-                                    >
-                                        <img
-                                            src={product.image}
-                                            alt={product.name}
-                                            className="w-full h-48 object-cover mb-4 rounded-lg"
-                                        />
-                                        <h2 className="text-xl font-bold">{product.name}</h2>
-                                        <p className="text-gray-600">{product.description}</p>
-                                        <div className="mt-4 flex flex-wrap justify-between items-center">
-                                            <span className="text-gray-800 font-bold">
-                                                {product.finalPrice.toLocaleString("en-US", {
-                                                    style: "currency",
-                                                    currency: "USD",
-                                                })}
-                                            </span>
-                                            <Link to={`/productdetails/${product.productoDTOID}`}>
-                                                <button className="ml-2 bg-gray-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                                                    Ver Detalle
-                                                </button>
-                                            </Link>
+                                {filteredProducts.map(product => {
+                                    const discountedPrice = product.finalPrice - (product.finalPrice * (product.promos / 100));
+
+                                    return (
+                                        <div key={product.id} className="relative bg-white rounded-lg shadow-lg p-4">
+                                            {product.promos !== 0 && (
+                                                <div className="absolute rounded top-1 right-1 bg-[#A62190] text-white text-xs font-bold py-1 px-2 rounded-tr-lg">
+                                                    {product.promos}% OFF
+                                                </div>
+                                            )}
+                                            <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4 rounded-lg" />
+                                            <h2 className="text-xl font-bold">{product.name}</h2>
+                                            <p className="text-gray-600">{product.description}</p>
+                                            <div className="mt-4 flex flex-wrap justify-between items-center">
+                                                <div className="flex flex-col">
+                                                    {product.promos !== 0 ? (
+                                                        <>
+                                                            <span className="text-gray-400 text-sm line-through">{product.finalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
+                                                            <span className="text-gray-800 font-bold">
+                                                                {discountedPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                                                            </span>
+                                                        </>
+                                                    ) : (
+                                                        <span className="text-gray-800 font-bold">
+                                                            {product.finalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <Link to={`/productdetails/${product.productoDTOID}`}>
+                                                    <button className="ml-2 bg-gray-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                                                        Ver Detalle
+                                                    </button>
+                                                </Link>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
