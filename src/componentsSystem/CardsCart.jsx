@@ -17,7 +17,7 @@ function CardsCart({cartDetails}) {
     
 
     return (
-        <main className="flex flex-col gap-2 min-w-[25rem] p-5 font-bold border-y text-white border-white min-h-[11rem] max-w-[20rem]">
+        <main className="flex flex-col gap-2 min-w-[25rem] p-5 border-y text-white border-white min-h-[11rem] max-w-[20rem]">
             {console.log(cartDetails)}
             {Object.keys(product).length > 0 ? <div className="">Producto: {product.name}</div> : <div className="">Producto ID: {cartDetails.productHolder}</div>}
             
