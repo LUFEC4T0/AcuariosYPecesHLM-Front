@@ -31,3 +31,9 @@
   filter: blur(3px) brightness(100%) contrast(90%); 
   z-index: -1;
 }
+
+.active {
+  background-color: rgb(17 24 39);
+  color: white;
+  border-color: white;
+}

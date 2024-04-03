@@ -21,9 +21,9 @@ function ViewAllEmployees() {
                 </div>
                 <div className="border-t border-2 border-white w-[50rem] self-center mt-5"></div>
 
+                {visual1 && <NewEmployee/>}
+                {visual2 && <AllEmployees/>}
                 
-                {visual1 && <AllEmployees/>}
-                {visual2 && <NewEmployee/>}
 
             </main>
         

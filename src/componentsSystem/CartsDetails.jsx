@@ -52,7 +52,7 @@ function CartsDetails() {
                 {Object.keys(carts).length > 0 ? carts.map(cart => cart.cartDetails.map(cartDetails => <CardsCart key={cartDetails.cartDetailsID} cartDetails={cartDetails}></CardsCart>)) : <h1 className="font-bold text-red-900 text-xl text-center m-11 text-red-600">Este cliente no posee compras realizadas</h1>}
             </div>
         </main>
-    )
+)
 }
 
 export default CartsDetails;
