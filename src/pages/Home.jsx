@@ -6,7 +6,7 @@ const Home = () => {
         <>
             <main className="bg-white fondo">
                 {/* <img className='' src={fondoImg} alt="" /> */}
-                <div className="relative md:top-80 md:left-96 sm:top-80 sm:left-28">
+                <div className="relative md:top-80 md:left-28 sm:top-80 sm:left-28 luigi:top-75 md2:left-20">
                     <a href="/shop">
                         <button className="px-7 mx-2 py-3 text-white bg-[#A62190] rounded-full font-bold shadow-md">
                             Tienda

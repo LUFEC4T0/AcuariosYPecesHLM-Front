@@ -7,7 +7,7 @@ const Footer = () => {
             <footer className="bg-gray-900 text-white text-center p-5 lg:h-[20rem] flex flex-wrap justify-around gap-5">
                 <div className='flex flex-col w-[18rem] justify-between p-3'>
                     <img className='w-[5rem]' src="../public/Acuarios HLM logo blanco (sin letras) PNG.png" alt="" />
-                    <p className='mt-3 text-justify text-[.9rem] text-[#c9c9c9]' >Lorem ipsum dolor sit, amet consectetur adipisicing elit rvrcvr recerc er cercer cercerc cercerc cercertvrtbrtyb.</p>
+                    <p className='mt-3 text-justify text-[.9rem] text-[#c9c9c9]' >Ya seas un aficionado entusiasta o un profesional experimentado, nuestro objetivo es ser tu socio de confianza en cada paso del camino.</p>
                     <div className='flex gap-5 items-start'>
                         <img className='w-[1.3rem] mt-3' src="../public/logoFacebook.png" alt="" />
                         <img className='w-[1.3rem] mt-3' src="../public/logoInstagram.png" alt="" />
