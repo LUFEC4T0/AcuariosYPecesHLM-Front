@@ -26,7 +26,7 @@ function Menu() {
                     <Link to="/admin/viewAllProviders" className={className1}>Proveedores</Link>
                     <Link to="/admin/products" className={className1}>Productos</Link>
                     <Link to="/admin/purchases" className={className1}>Compras</Link>
-                    <Link to="/admin/allEmployees" className={className1}>Empleados</Link>
+                    <Link to="/admin/viewAllEmployees" className={className1}>Empleados</Link>
                     <Link className={className1}>Ventas</Link>
                     <div className={className1 + "border-white"}></div>
                     <div className="flex flex-row gap-5">
