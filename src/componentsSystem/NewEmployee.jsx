@@ -62,10 +62,23 @@ function NewEmployee() {
                         <input className="text-black pl-2" type="text" name="password" value={newEmployee.password} onInput={handleInput}/>
                     </label>
                     <label className="flex flex-col">Rol
-                        <input className="text-black pl-2" type="text" name="role" value={newEmployee.role} onInput={handleInput}/>
+                        <select className="text-black pl-2" type="text" name="role" value={newEmployee.role} onInput={handleInput}>
+                            <option className="" defaultValue={"Rol"}>Rol</option>
+                            <option value="EMPLOYEE">EMPLOYEE</option>
+                            <option value="USER">USER</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="DEVELOPER">DEVELOPER</option>
+                        </select>
                     </label>
                     <label className="flex flex-col">Puesto
-                        <input className="text-black pl-2" type="text" name="workPosition" value={newEmployee.workPosition} onInput={handleInput}/>
+                        <select className="text-black pl-2" type="text" name="workPosition" value={newEmployee.workPosition} onInput={handleInput}>
+                            <option defaultValue="Puesto">Puesto</option>
+                            <option value="ATENCION">ATENCION</option>
+                            <option value="ADMINISTRACION">ADMINISTRACION</option>
+                            <option value="JEFE">JEFE</option>
+                            <option value="ENCARGADO">ENCARGADO</option>
+                            <option value="ECOMMMERCE">ECOMMMERCE</option>
+                        </select>
                     </label>
                 </fieldset>
                 <div className="flex justify-end">

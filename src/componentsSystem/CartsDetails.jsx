@@ -7,6 +7,7 @@ function CartsDetails() {
     const {id, tipo} = useParams()
     const token = localStorage.getItem('token')
     const [carts, setCarts] = useState([])
+    const [client, setClient] = useState({})
     
 
     useEffect(() => {
@@ -18,7 +19,10 @@ function CartsDetails() {
                 }
             })
             .then(
-                res => setCarts(res.data.carts)
+                res => {
+                    setCarts(res.data.carts)
+                    setClient(res.data)
+                }
             )
             .catch(err => console.log(err))
     
@@ -30,10 +34,11 @@ function CartsDetails() {
                 }
             })
             .then(
-                res => (
-                    console.log(res.data.carts),
+                res => {
+                    console.log(res.data.carts)
                     setCarts(res.data.carts)
-                    )
+                    setClient(res.data)
+                }
             )
             .catch(err => console.log(err))
         }
@@ -41,10 +46,10 @@ function CartsDetails() {
 
     return(
         <main className="flex flex-col m-5 gap-2 items-center">
-            <h1 className="text-white text-2xl text-center mb-5">Lista de compras realizadas:</h1>
+            <h1 className="text-white text-2xl text-center mb-5">Compras realizadas por: {Object.keys(client).length > 0 ? client.name + " " + client.lastName : null}</h1>
             <div className="border-t border-2 border-white w-[50rem] self-center mb-5"></div>
-            <div className="bg-gray-900 bg-opacity-70">
-                {Object.keys(carts).length > 0 ? carts.map(cart => cart.cartDetails.map(cartDetails => <CardsCart key={cartDetails.cartDetailsID} cartDetails={cartDetails}></CardsCart>)) : <h1 className="font-bold text-red-900 text-xl underline text-center m-11 text-red-900">Este cliente no posee compras realizadas</h1>}
+            <div className="flex flex-col bg-gray-900 bg-opacity-70 gap-3">
+                {Object.keys(carts).length > 0 ? carts.map(cart => cart.cartDetails.map(cartDetails => <CardsCart key={cartDetails.cartDetailsID} cartDetails={cartDetails}></CardsCart>)) : <h1 className="font-bold text-red-900 text-xl text-center m-11 text-red-600">Este cliente no posee compras realizadas</h1>}
             </div>
         </main>
     )
