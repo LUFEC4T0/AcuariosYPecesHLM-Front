@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 function NewClientStore() {
     const [clientStore, setClientStore] = useState({name: "", lastName: "", phone: "", rut: "", adress: ""})
@@ -14,8 +15,23 @@ function NewClientStore() {
         })
         .then(res => {
             console.log(res.data);
+            swal({
+                text: res.data,
+                icon: "success",
+                button: "accept",
+                timer: "2000"
+            })
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            swal({
+                text: err.response.data,
+                icon: "error",
+                button: "accept",
+                timer: "2000"
+
+            })
+        })
     }
 
     function handleInput(e) {
@@ -23,9 +39,10 @@ function NewClientStore() {
     }
 
     return (
-        <main className="m-5">
-            <h1 className="font-bold text-white text-xl underline text-center mb-5">Agregar un nuevo cliente</h1>
-            <form onSubmit={handleSubmit}>
+        <main className="m-5 flex flex-col">
+            <h1 className=" text-white text-2xl  text-center mb-5">Agregar un nuevo cliente</h1>
+            <div className="border-t border-2 border-white w-[50rem] self-center mb-5"></div>
+            <form className="w-[50rem] self-center" onSubmit={handleSubmit}>
                 <fieldset className="flex flex-col gap-5 text-white">
                     <label className="flex flex-col">Nombre
                         <input className="text-black pl-2" type="text" name="name" value={clientStore.name} onInput={handleInput}  />
@@ -43,7 +60,9 @@ function NewClientStore() {
                         <input className="text-black pl-2" type="text" name="adress" value={clientStore.adress} onInput={handleInput} />
                     </label>
                 </fieldset>
-                <button className="m-5 py-2 px-3 border-2 border-green-900 text-white font-bold" type="submit">Registrar</button>
+                <div className="flex justify-end">
+                    <button className="m-5 py-2 px-3 border-2 border-white bg-green-900 text-white " type="submit">Registrar</button>
+                </div>
             </form>
         </main>
     )

@@ -13,10 +13,12 @@ function ViewAllClients() {
     
 
     return (
-            <main className="">
+            <main className="flex flex-col mt-5">
+                <h1 className="text-white text-2xl text-center mb-5">Clientes</h1>
+                <div className="border-t border-2 border-white w-[50rem] self-center"></div>
                 <div className="flex justify-center gap-3">
-                    <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[30rem] bg-gray-300">Clients Online</button>
-                    <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[30rem] bg-gray-300">Clients Store</button>
+                    <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[30rem] bg-gray-300">Clientes Online</button>
+                    <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[30rem] bg-gray-300">Clientes Store</button>
                 </div>
                 
                 {visual1 && <AllClientsOnline/>}

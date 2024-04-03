@@ -21,7 +21,7 @@ function AllClientsStore() {
     }, [])
     return(
         <div className="flex flex-col gap-5 p-5 items-center">
-            <Link to={"/admin/newClientStore"} className="self-center font-bold border-2 border-black p-2 text-balck">+Añadir Cliente</Link>
+            <Link to={"/admin/newClientStore"} className="self-center bg-green-900 border-2 border-white p-2 text-white">+Añadir Cliente</Link>
 
             <div className="flex flex-wrap gap-5 justify-center">
                 {Object.keys(clients).length > 0 ? clients

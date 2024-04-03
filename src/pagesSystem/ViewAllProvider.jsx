@@ -14,8 +14,9 @@ function ViewAllProvider() {
     }
 
     return(
-        <main className="m-5">
-                <h1 className="font-bold text-white text-xl underline text-center">Proveedores</h1>
+        <main className="m-5 flex flex-col">
+                <h1 className="text-white text-2xl text-center mb-5">Proveedores</h1>
+                <div className="border-t border-2 border-white w-[50rem] self-center"></div>
                 <div className="flex justify-center gap-3">
                     <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[30rem] bg-gray-300">Proveedores</button>
                     <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[30rem] bg-gray-300">+ Nuevo Proveedor</button>
