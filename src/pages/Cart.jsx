@@ -7,11 +7,12 @@ function Cart() {
   const { cart, removeFromCart } = useCart();
   const [quantities, setQuantities] = useState(Array(cart.length).fill(1));
   const [cartDetail, setCartDetail] = useState()
-
+  const [purchaseData,setPurchaseData] = useState({details:'',finalAmount:'',paidMethod:'',taxes:'',cartId:''})
+  
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     cart.forEach((item, index) => {
-      totalPrice += item.finalPrice * quantities[index];
+      totalPrice += item.finalPrice * (1-item.promos/100) * quantities[index];
     });
     return totalPrice;
   };
@@ -49,6 +50,7 @@ function Cart() {
     }
     }) .then((res) => {
       alert('Purchase complete!')
+      axios.post("")
     })
     .catch((err) => {
         console.log(err);
@@ -94,6 +96,12 @@ function Cart() {
       </div>
       <div>
         <button onClick={handleOnPay} style={{ padding: '10px 20px', fontSize: '16px' }}>Pay Now</button>
+        <label>Payment Method: </label>
+        <select>
+          <option value="DEBIT" selected>DEBIT</option>
+          <option value= "CREDIT">CREDIT</option>
+        </select>
+      
       </div>
     </div>
   );
