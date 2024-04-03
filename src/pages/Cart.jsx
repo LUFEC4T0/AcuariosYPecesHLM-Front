@@ -98,14 +98,6 @@ function Cart() {
             {"Total: "+ item.finalPrice * (1-item.promos/100) * quantities[index]} 
           </p>
        
-
-<<<<<<< HEAD
-        <button onClick={() => removeFromCart(index)}>Remove</button>
-      </li>
-      ))}
-    </ul>
-</div>
-=======
       <button onClick={() => removeFromCart(index)}>Remove</button>
     </li>
   ))}
@@ -129,7 +121,6 @@ function Cart() {
           <option value= "CREDIT">CREDIT</option>
         </select>
       
->>>>>>> bc03eaeca7609d77edbaa38bb444999043109145
       </div>
         <div className='flex flex-col justify-center items-start gap-5'>
           <div className='flex gap-5'>
