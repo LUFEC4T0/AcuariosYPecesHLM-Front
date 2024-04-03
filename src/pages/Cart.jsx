@@ -97,6 +97,7 @@ function Cart() {
           <p>
             {"Total: "+ item.finalPrice * (1-item.promos/100) * quantities[index]} 
           </p>
+
       <button onClick={() => removeFromCart(index)}>Remove</button>
     </li>
   ))}
@@ -119,6 +120,7 @@ function Cart() {
           <option value="DEBIT" selected>DEBIT</option>
           <option value= "CREDIT">CREDIT</option>
         </select>
+    
       </div>
         <div className='flex flex-col justify-center items-start gap-5'>
           <div className='flex gap-5'>
