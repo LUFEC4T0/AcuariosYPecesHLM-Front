@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CardsCartClient from "../components/CardsCartClient";
 
 const ClientInfo = () => {
     const token = localStorage.getItem("token");
@@ -7,6 +8,7 @@ const ClientInfo = () => {
     const [clientTab, setClientTab] = useState("personalData");
     const [editando, setEditando] = useState(false);
     const [datosEditados, setDatosEditados] = useState(clientData);
+    const [product, setProduct] = useState([]);
 
     const changeTab = (clientab) => {
         setClientTab(clientab);
@@ -50,16 +52,26 @@ const ClientInfo = () => {
             });
     }, []);
 
+    useEffect(() => {
+        axios.get(`api/products/${2}`,{
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => setProduct(res.data)
+        ).catch(err => console.log(err))
+
+    }, [])
+
     console.log(clientData);
 
     return (
         <>
-            <div className="w-full flex justify-center mt-10">
-                <img className="rounded" src="../public/bannerClientInfo.png" alt="" />
+            <div className="w-full flex justify-center lg:mt-10 mt-5 sm:mt-3 sm:h-[8rem]">
+                <img className="rounded object-cover" src="../public/bannerClientInfo.png" alt="" />
             </div>
             <div className="flex justify-center mb-10">
-                <div className="flex flex-row place-content-center place-items-center w-[90%] bg-white text-black text-center p-5 justify-around">
-                    <div className="w-[20%] flex flex-col justify-center h-[20rem] gap-5 text-gray-900 p-3 rounded-xl">
+                <div className="flex flex-row place-content-center place-items-center lg:w-[90%] w-full bg-white text-black text-center p-5 justify-around sm:flex-col">
+                    <div className="lg:w-[20%] flex md:flex-col justify-center md:h-[20rem] gap-5 text-gray-900 md:p-3 rounded-xl sm:gap-2 sm:pb-2">
                         <button
                             className={`border-[2px] py-3 rounded-xl hover:bg-gray-900 hover:text-white hover:scale-95 shadow-3xl ${clientTab === "personalData"
                                 ? "border-gray-900 bg-gray-900 text-white"
@@ -88,7 +100,7 @@ const ClientInfo = () => {
                             Historial de Compras
                         </button>
                     </div>
-                    <div className="w-2/4 flex flex-col rounded-xl shadow-3xl">
+                    <div className="lg:w-2/4 md:w-3/4 flex flex-col rounded-xl shadow-3xl">
                         {clientData ? (
                             <div>
                                 {clientTab === "personalData" && (
@@ -209,22 +221,24 @@ const ClientInfo = () => {
                                     </div>
                                 )}
                                 {clientTab === "shopHistory" && (
-                                    <div>
-                                        <h2>Mis Compras</h2>
-                                        <table>
-                                            <thead>
+                                    <div className="flex flex-col gap-6 items-center p-5">
+                                        <h2 className="text-gray-900 text-3xl">
+                                            <strong>Mis compras</strong>
+                                        </h2>
+                                        <table className="table-auto w-full shadow-2xl">
+                                            <thead className="text-left text-gray-200 bg-gray-900 border border-gray-900">
                                                 <tr>
-                                                    <th>Importe</th>
-                                                    <th>Descripción</th>
-                                                    <th>Fecha</th>
+                                                    <th className="px-4 py-2">Preducto</th>
+                                                    <th className="px-4 py-2">Cantidad</th>
+                                                    <th className="px-4 py-2">Precio</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>500</td>
-                                                    <td>Oka</td>
-                                                    <td>18-03-1997</td>
-                                                </tr>
+                                            <tbody className="text-left border border-gray-700">
+                                                {
+                                                    clientData.carts.map((cart => cart.cartDetails.map(cartDetails => 
+                                                        <CardsCartClient cartDetails={cartDetails} key={cartDetails.cartDetailsID} />
+                                                    )))
+                                                }
                                             </tbody>
                                         </table>
                                     </div>

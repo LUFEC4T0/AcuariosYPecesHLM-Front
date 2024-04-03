@@ -30,7 +30,10 @@ function CartsDetails() {
                 }
             })
             .then(
-                res => setCarts(res.data.carts)
+                res => (
+                    console.log(res.data.carts),
+                    setCarts(res.data.carts)
+                    )
             )
             .catch(err => console.log(err))
         }
