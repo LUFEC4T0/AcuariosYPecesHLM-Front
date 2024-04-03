@@ -36,14 +36,14 @@ const About = () => {
                     Luis Carrascal
                   </h2>
                   <div className="w-12 h-1 bg-[#48B0D9] rounded mt-2 mb-4"></div>
-                  <p className="text-base">
+                  <p className="text-base text-justify">
                     Soy el creador de este hermoso negocio, por 8 años que me he
                     dedicado al mundo de los peces, te comparto quienes somos
                   </p>
                 </div>
               </div>
               <div className="md:w-2/3 md:pl-8 md:py-8 md:border-l border-gray-800 md:border-t-0 border-t mt-4 pt-4 md:mt-0 text-center md:text-left">
-                <p className="leading-relaxed text-lg mb-4">
+                <p className="leading-relaxed text-lg mb-4 text-justify	">
                   En Acuarios y Peces HLM, nos apasiona proporcionarte las
                   herramientas y conocimientos necesarios para explorar el
                   maravilloso mundo de los acuarios y los peces. Ya seas un
