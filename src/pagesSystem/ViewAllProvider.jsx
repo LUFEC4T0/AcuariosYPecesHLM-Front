@@ -15,12 +15,13 @@ function ViewAllProvider() {
 
     return(
         <main className="m-5 flex flex-col">
-                <h1 className="text-white text-2xl text-center mb-5">Proveedores</h1>
-                <div className="border-t border-2 border-white w-[50rem] self-center"></div>
+                <h1 className="text-white text-2xl text-center">Proveedores</h1>
+                
                 <div className="flex justify-center gap-3">
-                    <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[30rem] bg-gray-300">Proveedores</button>
-                    <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[30rem] bg-gray-300">+ Nuevo Proveedor</button>
+                    <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[24rem] bg-gray-300">Proveedores</button>
+                    <button onClick={handleclick} className="border font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[24rem] bg-gray-300">+ Nuevo Proveedor</button>
                 </div>
+                <div className="border-t border-2 border-white w-[50rem] self-center mt-5"></div>
                 
                 {visual1 && <AllProvider/>}
                 {visual2 && <AddNewProvider/>}

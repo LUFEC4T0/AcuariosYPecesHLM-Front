@@ -21,7 +21,7 @@ function Menu() {
     return (
         <>
             <div className="max-w-96">
-                <div className="flex flex-col items-center p-5 m-5 min-w-[20rem] gap-10 h-full">
+                <div className="flex flex-col max-h-[33rem] rounded-xl bg-gray-900 items-center p-10 m-5 min-w-[20rem] gap-10 h-full border-2 border-white">
                     <Link to="/admin/viewAllClients" className={className1}>Clientes</Link>
                     <Link to="/admin/viewAllProviders" className={className1}>Proveedores</Link>
                     <Link to="/admin/products" className={className1}>Productos</Link>

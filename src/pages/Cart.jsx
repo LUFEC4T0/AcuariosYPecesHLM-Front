@@ -97,7 +97,6 @@ function Cart() {
           <p>
             {"Total: "+ item.finalPrice * (1-item.promos/100) * quantities[index]} 
           </p>
-       
 
       <button onClick={() => removeFromCart(index)}>Remove</button>
     </li>
