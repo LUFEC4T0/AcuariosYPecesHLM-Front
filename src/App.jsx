@@ -26,7 +26,7 @@ import ViewAllProvider from './pagesSystem/ViewAllProvider'
 import NewClientStore from './pagesSystem/NewClientStore'
 import Purchases from './pagesSystem/Purchase'
 import ViewAllEmployees from './pagesSystem/ViewAllEmployees'
-
+import Sales from './pagesSystem/Sales'
 
 function App() {
 
@@ -54,6 +54,7 @@ function App() {
                   <Route path="/admin/viewAllProviders" element={<ViewAllProvider/>}/>
                   <Route path="/admin/newClientStore" element={<NewClientStore/>}/>
                   <Route path='/admin/purchases' element={<Purchases/>}/>
+                  <Route path='/admin/sales' element={<Sales/>}/>
                   
 
               </Route>

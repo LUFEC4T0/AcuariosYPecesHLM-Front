@@ -27,7 +27,7 @@ function Menu() {
                     <Link to="/admin/products" className={className1}>Productos</Link>
                     <Link to="/admin/purchases" className={className1}>Compras</Link>
                     <Link to="/admin/viewAllEmployees" className={className1}>Empleados</Link>
-                    <Link className={className1}>Ventas</Link>
+                    <Link to="/admin/sales" className={className1}>Ventas</Link>
                     <div className={className1 + "border-white"}></div>
                     <div className="flex flex-row gap-5">
                         <img onClick={handleClick} className="max-w-8 max-h-8 px-1 self-center" src="../../public/cerrarSesion.png" alt="Puerta abierta" />
