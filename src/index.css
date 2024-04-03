@@ -32,8 +32,15 @@
   z-index: -1;
 }
 
+.active {
+  background: rgb(17 24 39);
+  color: white;
+  border-color: white;
+}
+
 @media (max-width: 410px) {
   .fondo {
     background-position: left -10rem;
   }
 }
+

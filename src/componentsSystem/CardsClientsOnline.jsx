@@ -10,7 +10,7 @@ function CardsClientsOnline({client}) {
                     <div>Dirección {client.adress}</div>
                     <div>Teléfono: {client.phone}</div>
                     <div>Balance: {`${client.balance.toLocaleString( 'en-US', { style:'currency', currency:'USD' } )}`}</div>
-                    <Link to={`/admin/cartsDetails/${client.clientOnlineID}/${"online"}`} className="self-end underline text-green-900">Ver Compras</Link>
+                    <Link to={`/admin/cartsDetails/${client.clientOnlineID}/${"online"}`} className="font-bold self-end underline text-green-900">Ver Compras</Link>
                 </div>
             </div>
     )
