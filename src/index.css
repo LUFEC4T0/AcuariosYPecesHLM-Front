@@ -21,3 +21,15 @@
   position: relative;
   top: 350px;
 }
+
+.purchasesBg::before {
+  background-image: url(/public/bannerClientInfo.png);
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(3px) brightness(100%) contrast(90%); 
+  z-index: -1;
+}
