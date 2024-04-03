@@ -54,7 +54,8 @@ function Header() {
                                 </svg>
                                 <span className="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full">0</span>
                                 </a>
-                                <Link to='/clientinfo'>
+                                <Link className='flex flex-row gap-2' to='/clientinfo'>
+                                    <p className='text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300'>Perfil</p>
                                     <img src="../public/logoPerfil.png" alt="" />
                                 </Link>
                                 <a onClick={handleLogout} className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0" href="/">Cerrar sesión</a>
