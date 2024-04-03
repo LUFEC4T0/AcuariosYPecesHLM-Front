@@ -10,7 +10,7 @@ function SystemLayout(props) {
             <HeaderSystem/>
             <div className="flex flex-row h-full p-5 m-5 gap-5">
 
-                <div className="flex fixed inset-y-[108px] left-5">
+                <div className="flex fixed inset-y-[6.8em] min-h-[50rem] left-5">
                     <Menu/>
                 </div>
                 <div className="bg-gray-900 bg-opacity-80 w-screen min-h-screen rounded-xl ml-[21rem]">
