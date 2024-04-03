@@ -2,7 +2,7 @@ import React from "react";
 
 function HeaderSystem() {
     return (
-        <main className="flex flex-col w-full ">
+        <main className="flex flex-col w-full bg-gray-900">
             <div className="flex flex-row justify-between px-5 w-full items-center">
                 <img className='w-[3rem] py-2' src="../public/Acuarios HLM logo blanco (sin letras) PNG.png" alt="" />
                 <h1 className="font-bold text-white">System</h1>

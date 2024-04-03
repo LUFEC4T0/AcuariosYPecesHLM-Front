@@ -22,7 +22,8 @@ function SalesDetails() {
 
     return (
         <main className="flex flex-col m-5 gap-2">
-            <h1 className="font-bold text-white text-2xl underline text-center">VENTAS</h1>
+            <h1 className="font-bold text-white text-2xl text-center mb-5">Ventas</h1>
+            <div className="border-t border-2 border-white w-[50rem]"></div>
             <div className="flex flex-wrap justify-center gap-5 m-11">
                 {Object.keys(sales).length > 0 ? sales.map(sale => <CardSales key={sale.id} sale={sale}></CardSales>) : <h1 className="font-bold text-red-900 text-xl underline">No hay ventas registradas</h1>}
             </div>

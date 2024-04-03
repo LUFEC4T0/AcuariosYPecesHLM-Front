@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { useCart } from '../utils/cart';
+import axios from 'axios';
 
 function Cart() {
   const shippingPrice = 100; 
   const { cart, removeFromCart } = useCart();
   const [quantities, setQuantities] = useState(Array(cart.length).fill(1));
-
-
+  const [cartDetail, setCartDetail] = useState()
+  const [purchaseData,setPurchaseData] = useState({details:'',finalAmount:'',paidMethod:'',taxes:'',cartId:''})
+  
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     cart.forEach((item, index) => {
-      totalPrice += item.finalPrice * quantities[index];
+      totalPrice += item.finalPrice * (1-item.promos/100) * quantities[index];
     });
     return totalPrice;
   };
@@ -19,9 +21,43 @@ function Cart() {
     const newQuantities = [...quantities];
     newQuantities[index] = parseInt(event.target.value, 10); 
     setQuantities(newQuantities);
+    const cartarray = [];
+  
+      cart.forEach((product, index) => {
+        cartarray.push({
+          productoId: product.productoDTOID,
+          amount: product.finalPrice * (1 - product.promos / 100),
+          quantity: quantities[index]
+        });
+      });
+    /*const cartarray = cart.map(product => {
+      return {
+        productoID: product.productoDTOID,
+        amount: product.finalPrice * (1-product.promos/100),
+        quantity: quantities[index]
+      }
+    })*/
+    setCartDetail(cartarray)
+    console.log(cartarray)
   };
 
+  const handleOnPay =async (e)=>{
+    const token = localStorage.getItem("token")
+    e.preventDefault()
+    axios.post("/api/carts/cartOnline",cartDetail, {
+      headers: {
+        Authorization: `Bearer ${token}`
+    }
+    }) .then((res) => {
+      alert('Purchase complete!')
+      axios.post("")
+    })
+    .catch((err) => {
+        console.log(err);
+        alert('Theres an error in the purchase');
+    });
 
+    }
   return (
     <div className=''>
       <div className='flex justify-around'>
@@ -63,11 +99,37 @@ function Cart() {
           </p>
        
 
+<<<<<<< HEAD
         <button onClick={() => removeFromCart(index)}>Remove</button>
       </li>
       ))}
     </ul>
 </div>
+=======
+      <button onClick={() => removeFromCart(index)}>Remove</button>
+    </li>
+  ))}
+</ul>
+        </div>
+        <div>
+          <strong>Subtotal:</strong> {calculateTotalPrice()}
+          <br />
+          <strong>Shipping Price:</strong> ${shippingPrice}
+          <br />
+          <strong>Taxes:</strong> ${calculateTotalPrice()* 0.21} 
+          <br />
+          <strong>Total:</strong> ${calculateTotalPrice()* 0.21+ calculateTotalPrice()+shippingPrice}
+        </div>
+      </div>
+      <div>
+        <button onClick={handleOnPay} style={{ padding: '10px 20px', fontSize: '16px' }}>Pay Now</button>
+        <label>Payment Method: </label>
+        <select>
+          <option value="DEBIT" selected>DEBIT</option>
+          <option value= "CREDIT">CREDIT</option>
+        </select>
+      
+>>>>>>> bc03eaeca7609d77edbaa38bb444999043109145
       </div>
         <div className='flex flex-col justify-center items-start gap-5'>
           <div className='flex gap-5'>

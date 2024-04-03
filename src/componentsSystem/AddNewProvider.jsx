@@ -14,8 +14,23 @@ function AddNewProvider() {
         })
         .then(res => {
             console.log(res.data);
+            swal({
+                text: res.data,
+                icon: "success",
+                button: "accept",
+                timer: "2000"
+            })
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            swal({
+                text: err.response.data,
+                icon: "error",
+                button: "accept",
+                timer: "2000"
+
+            })
+        })
     }
 
     function handleInput(e) {
@@ -24,8 +39,8 @@ function AddNewProvider() {
     }
 
     return(
-        <main className="mt-5">
-            <form onSubmit={handleSubmit} className="">
+        <main className="mt-5 flex flex-col">
+            <form onSubmit={handleSubmit} className="w-[50rem] self-center">
                 <fieldset className="flex flex-col gap-5 text-white">
                     <label className="flex flex-col">Nombre
                         <input className="text-black pl-2" type="text" name="name" value={provider.name} onInput={handleInput}/>
@@ -39,11 +54,13 @@ function AddNewProvider() {
                     <label className="flex flex-col">RUC
                         <input className="text-black pl-2" type="RUC" name="RUC" value={provider.RUC} onInput={handleInput}/>
                     </label>
-                    <label className="flex flex-col">email
+                    <label className="flex flex-col">Email
                         <input className="text-black pl-2" type="email" name="email" value={provider.email} onInput={handleInput}/>
                     </label>
                 </fieldset>
-                <button className="m-5 py-2 px-3 border border-white text-white" type="submit">Registrar</button>
+                <div className="flex justify-end">
+                    <button className="m-5 py-2 px-3 border-2 border-whit2 bg-green-900 text-white" type="submit">Registrar</button>
+                </div>
             </form>
             
         </main>
