@@ -1,22 +1,23 @@
 import React from "react";
 import Cards from "../components/Cards";
+import {Link} from "react-router-dom";
 
 const Home = () => {
     return (
         <>
             <main className="bg-white fondo">
                 {/* <img className='' src={fondoImg} alt="" /> */}
-                <div className="relative md:top-80 md:left-28 sm:top-80 sm:left-28 luigi:top-75 md2:left-20">
-                    <a href="/shop">
-                        <button className="px-7 mx-2 py-3 text-white bg-[#A62190] rounded-full font-bold shadow-md">
+                <div className="relative md:top-80 md:left-20 sm:top-[16rem] sm:left-[1.5rem] md2:left-20">
+                    <Link to="/shop">
+                        <button className="px-7 mx-2 py-3 text-white bg-[#A62190] rounded-full font-bold shadow-md sm:px-4 sm:py-2">
                             Tienda
                         </button>
-                    </a>
-                    <a href="#">
-                        <button className="px-7 mx-2 py-3 text-white bg-gray-900 rounded-full font-bold shadow-md">
-                            Ofertas
+                    </Link>
+                    <Link to="/about">
+                        <button className="px-7 mx-2 py-3 text-white bg-gray-900 rounded-full font-bold shadow-md sm:px-4 sm:py-2">
+                            Nosotros
                         </button>
-                    </a>
+                    </Link>
                 </div>
                 <div className="container mx-auto py-8 posicion">
                     <h1 className="text-3xl font-bold text-center mb-8 text-white">

@@ -22,15 +22,15 @@ function CardsCartClient({ cartDetails }) {
       {console.log(cartDetails)}
       {Object.keys(product).length > 0 ? (
         <tr className="border border-gray-200" key={cartDetails.cartDetailsID}>
-          <td className="px-4 py-2">{product.name}</td>
-          <td className="px-4 py-2">{cartDetails.quantity}</td>
-          <td className="px-4 py-2">{cartDetails.amount}</td>
+          <td className="px-4 py-2 text-center">{product.name}</td>
+          <td className="px-4 py-2 text-center">{cartDetails.quantity}</td>
+          <td className="px-4 py-2 text-right">{numberFormatter.format(cartDetails.amount)}</td>
         </tr>
       ) : (
         <tr key={cartDetails.cartDetailsID}>
           <td className="px-4 py-2">{cartDetails.productHolder}</td>
-          <td className="px-4 py-2">{cartDetails.quantity}</td>
-          <td className="px-4 py-2">{numberFormatter.format(cartDetails.amount)}</td>
+          <td className="px-4 py-2 text-center">{cartDetails.quantity}</td>
+          <td className="px-4 py-2 text-right">{numberFormatter.format(cartDetails.amount)}</td>
         </tr>
       )}
     </>

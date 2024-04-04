@@ -228,9 +228,9 @@ const ClientInfo = () => {
                                         <table className="table-auto w-full shadow-2xl">
                                             <thead className="text-left text-gray-200 bg-gray-900 border border-gray-900">
                                                 <tr>
-                                                    <th className="px-4 py-2">Preducto</th>
-                                                    <th className="px-4 py-2">Cantidad</th>
-                                                    <th className="px-4 py-2">Precio</th>
+                                                    <th className="px-4 py-2 text-center">Preducto</th>
+                                                    <th className="px-4 py-2 text-center">Cantidad</th>
+                                                    <th className="px-4 py-2 text-right">Precio</th>
                                                 </tr>
                                             </thead>
                                             <tbody className="text-left border border-gray-700">

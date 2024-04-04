@@ -28,10 +28,9 @@ const ProductDetails = () => {
       };
 
     return (
-        <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
-            <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-                <img src={productState.image} className="w-full h-48 object-cover mb-4 rounded-lg" />
-                <img src={productState.image} className="w-full h-48 object-cover mb-4 rounded-lg" />
+        <div className="flex items-center justify-center py-12 2xl:px-20 md:px-6 px-4">
+            <div className="xl:w-2/6 lg:w-2/5 w-[50%] h-full md:block flex justify-center">
+                <img src={productState.image} className="w-full object-cover mb-4 rounded-lg" />
             </div>
 
             <div className="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
