@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCart } from '../utils/cart';
 import { Link } from 'react-router-dom';
 function Header() {
@@ -12,9 +12,9 @@ function Header() {
 
     const handleLogout = () =>{
         localStorage.removeItem("token")
+        localStorage.removeItem("cart")
     }
 
-    
     return (
         <>
         <div className="relative shadow bg-gray-900 md:flex md:justify-around md:sticky md:top-0 md:z-50">
@@ -60,9 +60,9 @@ function Header() {
                                 <Link className='flex flex-row gap-2' to='/clientinfo'>
                                     <img src="../public/logoPerfil.png" alt="" />
                                 </Link>
-                                <Link to="/home">
+                                <a onClick={handleLogout} href="/">
                                     <img className='w-5 h-5' onClick={handleLogout} src="../public/cerrarSesion.png" alt="" />
-                                </Link>
+                                </a>
                             </div>
                         )    
                     }

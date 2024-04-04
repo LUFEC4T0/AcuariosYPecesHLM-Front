@@ -38,9 +38,20 @@
   border-color: white;
 }
 
-@media (max-width: 410px) {
+@media (min-width: 320px) and (max-width: 767px) {
   .fondo {
-    background-position: left -10rem;
+    background-image: url(/public/bannerHomeMovil.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .fondo {
+    background-image: url(/public/bannerHomeTablet.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
   }
 }
 

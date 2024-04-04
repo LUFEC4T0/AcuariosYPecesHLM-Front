@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../utils/cart';
 import axios from 'axios';
 
@@ -6,9 +6,24 @@ function Cart() {
   const shippingPrice = 100; 
   const { cart, removeFromCart } = useCart();
   const [quantities, setQuantities] = useState(Array(cart.length).fill(1));
-  const [cartDetail, setCartDetail] = useState()
-  const [purchaseData,setPurchaseData] = useState({details:'',finalAmount:'',paidMethod:'',taxes:'',cartId:''})
+  const [cartDetail, setCartDetail] = useState();
+  const [purchaseData,setPurchaseData] = useState({details:'',finalAmount:'',paidMethod:["DEBITO"],taxes:[21],cartId:'',employeeId: 1});
+  const [cartId, setCartId] = useState(0);
+  const token = localStorage.getItem("token")
 
+  useEffect(() => {
+    const cartarray = [];
+  
+    cart.forEach((product, index) => {
+      cartarray.push({
+        productoId: product.productoDTOID,
+        amount: product.finalPrice * (1 - product.promos / 100),
+        quantity: quantities[index]
+      });
+    });
+  setCartDetail(cartarray)
+  console.log(cartarray)
+  }, []);
 
   const calculateTotalPrice = () => {
     let totalPrice = 0;
@@ -36,29 +51,55 @@ function Cart() {
   };
 
   const handleOnPay =async (e)=>{
-    const token = localStorage.getItem("token")
     e.preventDefault()
     axios.post("/api/carts/cartOnline",cartDetail, {
       headers: {
         Authorization: `Bearer ${token}`
     }
     }) .then((res) => {
-      swal({
-        text: "¡Muchas gracias por su compra!",
-        icon: "success",
-        button: "accept",
-        timer: "2000"
-    })
-  }).catch((err) => {
+      console.log(res.data)
+      setPurchaseData({
+        ...purchaseData,
+        details: 'Detalle de compra',
+        finalAmount: calculateTotalPrice(),
+        cartId: res.data.cartID,
+        paidMethod:["DEBITO"],
+        taxes:[21],
+        employeeId: 1
+
+      });
+    }).catch((err) => {
+      console.log(err)
     swal({
       text: "Hubo un error con su compra.",
       icon: "error",
       button: "accept",
       timer: "2000"
-
   })
     });
     }
+
+    useEffect(() => {
+      console.log(purchaseData);
+      axios.post("/api/sales/", purchaseData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((res) => {
+        console.log("OK");
+        swal({
+          text: "¡Muchas gracias por su compra!",
+          icon: "success",
+          button: "accept",
+          timer: "2000"
+      })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }, [purchaseData]);
+    
 
 
   return (
@@ -144,7 +185,7 @@ function Cart() {
           </select>
         </div>
           <div>
-           <button className='bg-green-600 w-[100%] rounded-lg font-bold hover:scale-95 ' onClick={handleOnPay} style={{ padding: '10px 20px', fontSize: '16px' }}>Pay Now</button>
+           <button className='bg-green-600 w-[100%] rounded-lg font-bold hover:scale-95 ' onClick={handleOnPay} style={{ padding: '10px 20px', fontSize: '16px' }}>Pagar ahora</button>
           </div>
         </div>
         </div>
