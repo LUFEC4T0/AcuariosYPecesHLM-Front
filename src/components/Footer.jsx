@@ -42,17 +42,17 @@ const Footer = () => {
                     <p className='text-start'>Contacto</p>
                     <div className='flex flex-col'>
                         <div className='flex items-center'>
-                            <a href="https://wa.me/3196820102">
+                            <a href="https://wa.me/3196820102" className='flex flex-row items-center'>
                             <img className='w-[1rem] h-[1rem] mr-2' src="../public/logoTelefono.png" alt="" /><p className='my-2 text-[#c9c9c9] text-[.9rem]'>+57 319 682 0102</p>
                             </a>
                         </div>
                         <div className='flex items-center'>
-                        <a href="mailto:acuarioypeceshlm@gmail.com">
+                            <a href="mailto:acuarioypeceshlm@gmail.com" className='flex flex-row items-center'>
                             <img className='w-[1.2rem] h-[1.2rem] mr-2' src="../public/logoCorreo.png" alt="" /><p className='my-2 text-[#c9c9c9] text-[.9rem]'>acuarioypeceshlm@gmail.com</p>
                             </a>
                         </div>
                         <div className='flex items-center'>
-                            <a href="https://www.google.com/maps/place/Acuarios+Y+Peces+HLM/@5.4869629,-74.676101,17z/data=!4m10!1m2!2m1!1sCalle+55+1B-39+La+Dorada,+Colombia!3m6!1s0x8e40df5c94e18b17:0x508fdcc16f1bc439!8m2!3d5.4869629!4d-74.6735261!15sCiJDYWxsZSA1NSAxQi0zOSBMYSBEb3JhZGEsIENvbG9tYmlhWiMiIWNhbGxlIDU1IDFiIDM5IGxhIGRvcmFkYSBjb2xvbWJpYZIBDWFxdWFyaXVtX3Nob3DgAQA!16s%2Fg%2F11tj6v5bg9?entry=ttu">
+                            <a className='flex flex-row items-center' href="https://www.google.com/maps/place/Acuarios+Y+Peces+HLM/@5.4869629,-74.676101,17z/data=!4m10!1m2!2m1!1sCalle+55+1B-39+La+Dorada,+Colombia!3m6!1s0x8e40df5c94e18b17:0x508fdcc16f1bc439!8m2!3d5.4869629!4d-74.6735261!15sCiJDYWxsZSA1NSAxQi0zOSBMYSBEb3JhZGEsIENvbG9tYmlhWiMiIWNhbGxlIDU1IDFiIDM5IGxhIGRvcmFkYSBjb2xvbWJpYZIBDWFxdWFyaXVtX3Nob3DgAQA!16s%2Fg%2F11tj6v5bg9?entry=ttu">
                             <img className='w-[1.2rem] h-[1.2rem] mr-2' src="../public/logoUbicacion.png" alt="" /><p className='my-2 text-[#c9c9c9] text-[.9rem]'>Calle 55 # 1B-39 (La Dorada)</p>
                             </a>
                         </div>
