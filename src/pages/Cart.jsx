@@ -6,8 +6,10 @@ function Cart() {
   const shippingPrice = 100; 
   const { cart, removeFromCart } = useCart();
   const [quantities, setQuantities] = useState(Array(cart.length).fill(1));
-  const [cartDetail, setCartDetail] = useState()
-  const [purchaseData,setPurchaseData] = useState({details:'',finalAmount:'',paidMethod:'',taxes:'',cartId:''})
+  const [cartDetail, setCartDetail] = useState();
+  const [purchaseData,setPurchaseData] = useState({details:'',finalAmount:'',paidMethod:["DEBITO"],taxes:[21],cartId:'',employeeId: 1});
+  const [cartId, setCartId] = useState(0);
+  const token = localStorage.getItem("token")
 
   useEffect(() => {
     const cartarray = [];
@@ -49,31 +51,50 @@ function Cart() {
   };
 
   const handleOnPay =async (e)=>{
-    const token = localStorage.getItem("token")
     e.preventDefault()
     axios.post("/api/carts/cartOnline",cartDetail, {
       headers: {
         Authorization: `Bearer ${token}`
     }
     }) .then((res) => {
-      swal({
-        text: "¡Muchas gracias por su compra!",
-        icon: "success",
-        button: "accept",
-        timer: "2000"
-    })
-  }).catch((err) => {
+      setCartId(res.data.cartID)
+      const errorcheck = cartId
+      console.log(errorcheck)
+    }).catch((err) => {
+      console.log(err)
     swal({
       text: "Hubo un error con su compra.",
       icon: "error",
       button: "accept",
       timer: "2000"
-
   })
     });
     }
 
-    
+    useEffect (()=>{
+      if (cartId > 0){
+        console.log("Entre!")
+        setPurchaseData({
+          ...purchaseData,
+          details: 'Detalle de compra',
+          finalAmount: calculateTotalPrice(),
+          cartId: cartId,
+          paidMethod:["DEBITO"],
+          taxes:[21],
+          employeeId: 1
+
+        });
+        console.log(purchaseData)
+        axios.post("/api/sales/",purchaseData,{
+          headers: {
+            Authorization: `Bearer ${token}`
+        }}).then((res)=>{
+          console.log(res)
+        }).catch((err)=>{
+          console.log(err)
+        })
+    }
+    },[cartId]) 
 
 
   return (
