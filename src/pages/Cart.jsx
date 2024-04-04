@@ -83,7 +83,7 @@ function Cart() {
         </div>
       </div>
       <div>
-        <button onClick={handleOnPay} style={{ padding: '10px 20px', fontSize: '16px' }}>Pay Now</button>
+        <button  style={{ padding: '10px 20px', fontSize: '16px' }}>Pay Now</button>
         <label>Payment Method: </label>
         <select>
           <option value="DEBIT" selected>DEBIT</option>
