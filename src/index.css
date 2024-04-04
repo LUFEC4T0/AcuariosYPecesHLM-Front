@@ -38,9 +38,11 @@
   border-color: white;
 }
 
-@media (max-width: 410px) {
+@media (min-width: 320px) and (max-width: 767px) {
   .fondo {
-    background-position: left -10rem;
+    background-image: url(/public/bannerHomeMovil.png);
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 
