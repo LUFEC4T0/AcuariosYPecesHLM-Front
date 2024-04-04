@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import numberFormatter from "../utils/currencyformatter";
 
 function CardsCartClient({ cartDetails }) {
   const [product, setProduct] = useState([]);
@@ -29,7 +30,7 @@ function CardsCartClient({ cartDetails }) {
         <tr key={cartDetails.cartDetailsID}>
           <td className="px-4 py-2">{cartDetails.productHolder}</td>
           <td className="px-4 py-2">{cartDetails.quantity}</td>
-          <td className="px-4 py-2">{cartDetails.amount}</td>
+          <td className="px-4 py-2">{numberFormatter.format(cartDetails.amount)}</td>
         </tr>
       )}
     </>

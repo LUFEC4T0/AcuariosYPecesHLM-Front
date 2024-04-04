@@ -15,8 +15,9 @@ export default {
   
         'md': {'min': '768px'},
         // => @media (min-width: 768px and max-width: 1023px) { ... }
-      }
+
+        'md2': {'min': '768px', 'max': '1023px'},
     },
   },
   plugins: [],
-}
+}}

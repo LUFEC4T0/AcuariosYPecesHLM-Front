@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-
 const Purchases = () => {
   const token = localStorage.getItem("token");
 
- 
-
   const [purchases, setPurchases] = useState([]);
-
 
   const [newPurchase, setNewPurchase] = useState({
     quantity: 0,
     details: "",
     unitCost: 0.0,
-    providerID: 0,
+    providerID: '',
     productID: 0,
   });
 
@@ -22,15 +18,11 @@ const Purchases = () => {
     event.preventDefault();
 
     axios
-      .post(
-        "api/purchase/newPurchase",
-        newPurchase,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .post("api/purchase/newPurchase", newPurchase, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response);
       })
@@ -38,10 +30,6 @@ const Purchases = () => {
         console.log(err);
       });
   };
-
-
-  
-  console.log(token);
 
   useEffect(() => {
     axios
@@ -59,14 +47,21 @@ const Purchases = () => {
       });
   }, []);
 
-  console.log(purchases);
-
   const [visual1, setVisual1] = useState(true);
   const [visual2, setVisual2] = useState(false);
 
-  function handleclick() {
-    setVisual1(!visual1);
-    setVisual2(!visual2);
+  function handleclick1(e) {
+    setVisual1(true)
+    setVisual2(false)
+    console.log(`visual 1: ${!visual1}`)
+    console.log(`visual 2: ${visual2}`)
+  }
+
+  function handleclick2(e) {
+    setVisual1(false)
+    setVisual2(true)
+    console.log(`visual 1: ${visual1}`)
+    console.log(`visual 2: ${!visual2}`)
   }
 
   const [productList, setProduct] = useState([]);
@@ -82,42 +77,70 @@ const Purchases = () => {
       });
   }, []);
 
+  const [providerList, setProvider] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("api/provider/all", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setProvider(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const handleInput = async (e) => {
     setNewPurchase({ ...newPurchase, [e.target.name]: e.target.value });
+    console.log(newPurchase)
   };
 
-  console.log(newPurchase)
+  const color1 = "border border-white border-double font-bold text-center mt-11 mx-2 h-11 w-full text-white max-w-[24rem] bg-gray-900"
+  const color2 = "font-bold text-center mt-11 mx-2 h-11 w-full text-black max-w-[24rem] bg-gray-300"
 
   return (
-    <div>
-      <div className="flex justify-center items-center gap-10 p-10 ">
-        <button
-          onClick={handleclick}
-          className="font-bold text-center mt-11 mx-2 bg-gray-300 h-11 border-2 w-40 max-w-[30rem]"
-        >
-          Ver Compras
-        </button>
-        <button
-          onClick={handleclick}
-          className="font-bold text-center mt-11 mx-2 bg-gray-300 h-11 border-2 w-40 max-w-[30rem]"
-        >
-          Nueva Compra
-        </button>
+    <div className="flex flex-col items-center ">
+
+      <div className=" justify-center items-center gap-10 mt-5">
+        <h1 className="text-white text-2xl text-center">Compras</h1>
+        <div className="flex w-full mb-5 gap-3">
+          <button
+            onClick={handleclick1}
+            className={visual1 ? color1 : color2}
+          >
+            Ver Compras
+          </button>
+          <button
+            onClick={handleclick2}
+            className={visual2 ? color1 : color2}
+          >
+            Nueva Compra
+          </button>
+        </div>
+        <div className="border-t border-2 border-white w-[50rem]"></div>
+
       </div>
 
       {visual1 && (
         <div>
+
           <div className="text-white flex flex-col justify-center items-center mt-8">
+
             {Object.keys(purchases).length > 0 ? (
-              purchases.map((purchase) => {
-                <div className="flex flex-col border-b-2 border-white">
+              purchases.map((purchase) =>
+                <div key={purchase.purchaseID} className="flex flex-col border-b-2 border-white">
                   <p>{purchase.details}</p>
                   <p>{purchase.date}</p>
                   <p>{purchase.totalCost}</p>
-                </div>;
-              })
+                </div>
+              )
             ) : (
-              <p className="border-b-2 border-white text-2xl">
+              <p className="border-b-2 border-white text-2xl text-red-500">
                 No hay compras registradas
               </p>
             )}
@@ -126,7 +149,7 @@ const Purchases = () => {
       )}
       {visual2 && (
         <div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center mt-5">
             <form
               onSubmit={handleSubmit}
               className="flex flex-col items-center gap-4 bg-[rgba(255,255,255,0.4)] w-[550px] h-[280px] p-4 rounded-lg"
@@ -165,9 +188,18 @@ const Purchases = () => {
                   value={newPurchase.providerID}
                   onChange={handleInput}
                 >
-                  <option value="#" selected disabled>
+                  <option value="#" selected >
                     Seleccione un proveedor
                   </option>
+                  {providerList.map((provider) => (
+                    <option
+                      key={provider.providerID}
+                      name={provider.providerID}
+                      value={provider.providerID}
+                    >
+                      {provider.name}
+                    </option>
+                  ))}
                 </select>
                 <select
                   className="text-center h-8 rounded-lg"
@@ -180,7 +212,11 @@ const Purchases = () => {
                     Seleccione un producto
                   </option>
                   {productList.map((product) => (
-                    <option key={product.id} name={product.productoDTOID} value={product.productoDTOID}>
+                    <option
+                      key={product.id}
+                      name={product.productoDTOID}
+                      value={product.productoDTOID}
+                    >
                       {product.name} de: {product.provider}
                     </option>
                   ))}

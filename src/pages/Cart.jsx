@@ -35,7 +35,6 @@ function Cart() {
           <div>
             <img className="w-36" src={item.image} alt="" />
           </div>
-          <div className=' '>
           <div className='flex gap-5 justify-between'>
             <p className='font-bold'>
               Producto: 
@@ -64,24 +63,33 @@ function Cart() {
                 onChange={(event) => handleQuantityChange(index, event)}
               />
           </div>
-          </div>
-        <button className='px-5 bg-red-500 text-white rounded-lg hover:text-blue-600' onClick={() => removeFromCart(index)}>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-          Remove</button>
-          <div className='flex gap-5 justify-between'>
-            <p className='font-bold'>
-            Total: 
-            </p>
-            {item.finalPrice * (1-item.promos/100) * quantities[index]} 
-          </div>
-        </li>
-      
-      ))}
-      
-    </ul>
-</div>
+          <p>
+            {"Total: "+ item.finalPrice * (1-item.promos/100) * quantities[index]} 
+          </p>
+
+      <button onClick={() => removeFromCart(index)}>Remove</button>
+    </li>
+  ))}
+</ul>
+        </div>
+        <div>
+          <strong>Subtotal:</strong> {calculateTotalPrice()}
+          <br />
+          <strong>Shipping Price:</strong> ${shippingPrice}
+          <br />
+          <strong>Taxes:</strong> ${calculateTotalPrice()* 0.21} 
+          <br />
+          <strong>Total:</strong> ${calculateTotalPrice()* 0.21+ calculateTotalPrice()+shippingPrice}
+        </div>
+      </div>
+      <div>
+        <button onClick={handleOnPay} style={{ padding: '10px 20px', fontSize: '16px' }}>Pay Now</button>
+        <label>Payment Method: </label>
+        <select>
+          <option value="DEBIT" selected>DEBIT</option>
+          <option value= "CREDIT">CREDIT</option>
+        </select>
+    
       </div>
         <div className='flex flex-col justify-center items-start gap-5'>
           <div className='flex gap-5'>
