@@ -187,7 +187,7 @@ function Cart() {
           </select>
         </div>
           <div>
-           <button className='bg-green-600 w-[100%] rounded-lg font-bold hover:scale-95 ' onClick={handleOnPay} style={{ padding: '10px 20px', fontSize: '16px' }}>Pay Now</button>
+           <button className='bg-green-600 w-[100%] rounded-lg font-bold hover:scale-95 ' onClick={handleOnPay} style={{ padding: '10px 20px', fontSize: '16px' }}>Pagar ahora</button>
           </div>
         </div>
         </div>
