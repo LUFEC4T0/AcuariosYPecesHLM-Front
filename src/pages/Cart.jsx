@@ -94,9 +94,8 @@ function Cart() {
             <p className='font-bold'>Cantidad:</p>
             <p className='opacity-60'>
             (Seleccione)
-          </p>
+            </p>
             <input 
-            
             className='text-right border border-black rounded-lg'
             type="number" 
             step="1" 
@@ -105,7 +104,6 @@ function Cart() {
             value={quantities[index]} 
             onChange={(event) => handleQuantityChange(index, event)}
           />
-          
           </div>
           <div className='flex gap-5 justify-between'>
             <p className='font-bold'>
