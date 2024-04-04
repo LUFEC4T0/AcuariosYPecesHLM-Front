@@ -30,8 +30,7 @@ const ProductDetails = () => {
     return (
         <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
             <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-                <img src={productState.image} className="w-full h-48 object-cover mb-4 rounded-lg" />
-                <img src={productState.image} className="w-full h-48 object-cover mb-4 rounded-lg" />
+                <img src={productState.image} className="w-full h-full rounded object-cover mb-4 rounded-lg" />
             </div>
 
             <div className="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
@@ -116,29 +115,6 @@ const ProductDetails = () => {
                 <img src="" alt="" />
                     Agregar al Carrito
                 </button>
-
-                <div>
-                    <div className="border-t border-b py-4 mt-7 border-gray-200">
-                        <div onClick={() => setShow(!show)} className="flex justify-between items-center cursor-pointer">
-                            <p className="text-base leading-4 text-gray-800">Términos de garantía</p>
-                            <button
-                                className="
-									cursor-pointer
-									focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400
-									rounded
-								"
-                                aria-label="show or hide"
-                            >
-                                <svg className={"transform " + (show ? "rotate-180" : "rotate-0")} width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 1L5 5L1 1" stroke="#4B5563" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div className={"pt-4 text-base leading-normal pr-12 mt-4 text-gray-600 " + (show ? "block" : "hidden")} id="sect">
-                            Aca van terminos y Condiciones de la compra
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );

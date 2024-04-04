@@ -50,11 +50,20 @@ function Cart() {
         Authorization: `Bearer ${token}`
     }
     }) .then((res) => {
-      alert('Purchase complete!')
+      swal({
+        text: "¡Muchas gracias por su compra!",
+        icon: "success",
+        button: "accept",
+        timer: "2000"
     })
-    .catch((err) => {
-        console.log(err);
-        alert('Theres an error in the purchase');
+  }).catch((err) => {
+    swal({
+      text: "Hubo un error con su compra.",
+      icon: "error",
+      button: "accept",
+      timer: "2000"
+
+  })
     });
     }
 
