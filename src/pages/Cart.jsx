@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../utils/cart';
 import axios from 'axios';
 
@@ -9,6 +9,19 @@ function Cart() {
   const [cartDetail, setCartDetail] = useState()
   const [purchaseData,setPurchaseData] = useState({details:'',finalAmount:'',paidMethod:'',taxes:'',cartId:''})
 
+  useEffect(() => {
+    const cartarray = [];
+  
+    cart.forEach((product, index) => {
+      cartarray.push({
+        productoId: product.productoDTOID,
+        amount: product.finalPrice * (1 - product.promos / 100),
+        quantity: quantities[index]
+      });
+    });
+  setCartDetail(cartarray)
+  console.log(cartarray)
+  }, []);
 
   const calculateTotalPrice = () => {
     let totalPrice = 0;
@@ -59,6 +72,8 @@ function Cart() {
   })
     });
     }
+
+    
 
 
   return (

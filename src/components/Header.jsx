@@ -13,7 +13,7 @@ function Header() {
     const handleLogout = () =>{
         localStorage.removeItem("token")
     }
-
+    
     
     return (
         <>
@@ -60,7 +60,7 @@ function Header() {
                                 <Link className='flex flex-row gap-2' to='/clientinfo'>
                                     <img src="../public/logoPerfil.png" alt="" />
                                 </Link>
-                                <Link to="/home">
+                                <Link to="/">
                                     <img className='w-5 h-5' onClick={handleLogout} src="../public/cerrarSesion.png" alt="" />
                                 </Link>
                             </div>
