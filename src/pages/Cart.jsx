@@ -57,9 +57,17 @@ function Cart() {
         Authorization: `Bearer ${token}`
     }
     }) .then((res) => {
-      setCartId(res.data.cartID)
-      const errorcheck = cartId
-      console.log(errorcheck)
+      console.log(res.data)
+      setPurchaseData({
+        ...purchaseData,
+        details: 'Detalle de compra',
+        finalAmount: calculateTotalPrice(),
+        cartId: res.data.cartID,
+        paidMethod:["DEBITO"],
+        taxes:[21],
+        employeeId: 1
+
+      });
     }).catch((err) => {
       console.log(err)
     swal({
@@ -71,30 +79,27 @@ function Cart() {
     });
     }
 
-    useEffect (()=>{
-      if (cartId > 0){
-        console.log("Entre!")
-        setPurchaseData({
-          ...purchaseData,
-          details: 'Detalle de compra',
-          finalAmount: calculateTotalPrice(),
-          cartId: cartId,
-          paidMethod:["DEBITO"],
-          taxes:[21],
-          employeeId: 1
-
-        });
-        console.log(purchaseData)
-        axios.post("/api/sales/",purchaseData,{
-          headers: {
-            Authorization: `Bearer ${token}`
-        }}).then((res)=>{
-          console.log(res)
-        }).catch((err)=>{
-          console.log(err)
-        })
-    }
-    },[cartId]) 
+    useEffect(() => {
+      console.log(purchaseData);
+      axios.post("/api/sales/", purchaseData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((res) => {
+        console.log("OK");
+        swal({
+          text: "¡Muchas gracias por su compra!",
+          icon: "success",
+          button: "accept",
+          timer: "2000"
+      })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }, [purchaseData]);
+    
 
 
   return (
