@@ -46,3 +46,12 @@
   }
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  .fondo {
+    background-image: url(/public/bannerHomeTablet.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+  }
+}
+
