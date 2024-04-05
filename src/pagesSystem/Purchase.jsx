@@ -183,7 +183,7 @@ const Purchases = () => {
                 />
                 </label>
                 {/* <input className="text-center h-8 rounded-lg" type="date" value={newPurchase.date} onBlur={handleInput}/> */}
-                <label className="flex flex-col">Número
+                <label className="flex flex-col">Costo
                 <input
                  className="text-black pl-2"
                   type="number"

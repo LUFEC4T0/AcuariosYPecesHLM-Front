@@ -28,7 +28,6 @@ function Menu() {
                     <NavLink to="/admin/products" activeClassName="active" exact={true} className="inactive border min-w-[11rem] text-center font-bold bg-white">Productos</NavLink>
                     <NavLink to="/admin/purchases" activeClassName="active" exact={true} className="inactive border min-w-[11rem] text-center font-bold bg-white">Compras</NavLink>
                     <NavLink to="/admin/viewAllEmployees" activeClassName="active" exact={true} className="inactive border min-w-[11rem] text-center font-bold bg-white">Empleados</NavLink>
-                    <NavLink to="/admin/sales" activeClassName="active" exact={true} className="inactive border min-w-[11rem] text-center font-bold bg-white">Ventas</NavLink>
                     <div className={className1 + "border-white"}></div>
                     <div className="flex flex-row gap-5">
                         <img onClick={handleClick} className="max-w-8 max-h-8 px-1 self-center" src="../../public/cerrarSesion.png" alt="Puerta abierta" />
